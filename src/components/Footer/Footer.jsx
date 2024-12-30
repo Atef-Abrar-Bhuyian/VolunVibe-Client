@@ -55,7 +55,7 @@ const Footer = () => {
           bottom: "30px",
           right: "20px",
           width: "50px",
-          height: "50px",
+          height: "50px", 
           borderRadius: "50%",
           boxShadow: "0 2px 5px rgba(0, 0, 0, 0.5)",
         }}
