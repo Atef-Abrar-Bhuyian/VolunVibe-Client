@@ -14,11 +14,12 @@ const Impact = () => {
         <h1 className="text-center text-3xl font-bold mb-10">Our Impact</h1>
       </Fade>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Slide direction="up">
-          <div className="text-2xl border-2 border-purple-400 shadow-purple-400 rounded-xl cursor-pointer flex flex-col items-center justify-center p-10 shadow-md">
-            <div ref={ref} className="font-bold text-5xl">
+        <div className="text-2xl border-2 border-purple-400 shadow-purple-400 rounded-xl cursor-pointer flex flex-col items-center justify-center p-10 shadow-md">
+          <div ref={ref} className="font-bold text-5xl">
+            <Slide direction="up">
               {inView && (
                 <CountUp
+                  scrollSpyOnce={true}
                   start={70000}
                   end={75000}
                   duration={1}
@@ -26,35 +27,39 @@ const Impact = () => {
                   suffix="+"
                 ></CountUp>
               )}
-            </div>
-            <hr className="w-full my-1 border border-purple-400" />
-            <div>
-              <h1 className="text-center">Volunteers Engaged</h1>
-            </div>
+            </Slide>
           </div>
-        </Slide>
-        <Slide direction="up">
-          <div className="text-2xl border-2 border-purple-400 shadow-purple-400 rounded-xl cursor-pointer flex flex-col items-center justify-center p-10 shadow-md">
-            <div ref={ref} className="font-bold text-5xl">
+          <hr className="w-full my-1 border border-purple-400" />
+          <div>
+            <h1 className="text-center">Volunteers Engaged</h1>
+          </div>
+        </div>
+
+        <div className="text-2xl border-2 border-purple-400 shadow-purple-400 rounded-xl cursor-pointer flex flex-col items-center justify-center p-10 shadow-md">
+          <div ref={ref} className="font-bold text-5xl">
+            <Slide direction="up">
               {inView && (
                 <CountUp
                   start={12000}
-                  end={13000 }
+                  end={13000}
                   duration={1}
                   decimal=","
                   suffix="+"
                 ></CountUp>
               )}
-            </div>
-            <hr className="w-full my-1 border border-purple-400" />
-            <div>
-              <h1 className="text-center">Lives <br /> Touched</h1>
-            </div>
+            </Slide>
           </div>
-        </Slide>
-        <Slide direction="up">
-          <div className="text-2xl border-2 border-purple-400 shadow-purple-400 rounded-xl cursor-pointer flex flex-col items-center justify-center p-10 shadow-md">
-            <div ref={ref} className="font-bold text-5xl">
+          <hr className="w-full my-1 border border-purple-400" />
+          <div>
+            <h1 className="text-center">
+              Lives <br /> Touched
+            </h1>
+          </div>
+        </div>
+
+        <div className="text-2xl border-2 border-purple-400 shadow-purple-400 rounded-xl cursor-pointer flex flex-col items-center justify-center p-10 shadow-md">
+          <div ref={ref} className="font-bold text-5xl">
+            <Slide direction="up">
               {inView && (
                 <CountUp
                   start={10000}
@@ -64,16 +69,17 @@ const Impact = () => {
                   suffix="+"
                 ></CountUp>
               )}
-            </div>
-            <hr className="w-full my-1 border border-purple-400" />
-            <div>
-              <h1 className="text-center">Volunteer Posts Created</h1>
-            </div>
+            </Slide>
           </div>
-        </Slide>
-        <Slide direction="up">
-          <div className="text-2xl border-2 border-purple-400 shadow-purple-400 rounded-xl cursor-pointer flex flex-col items-center justify-center p-10 shadow-md">
-            <div ref={ref} className="font-bold text-5xl">
+          <hr className="w-full my-1 border border-purple-400" />
+          <div>
+            <h1 className="text-center">Volunteer Posts Created</h1>
+          </div>
+        </div>
+
+        <div className="text-2xl border-2 border-purple-400 shadow-purple-400 rounded-xl cursor-pointer flex flex-col items-center justify-center p-10 shadow-md">
+          <div ref={ref} className="font-bold text-5xl">
+            <Slide direction="up">
               {inView && (
                 <CountUp
                   start={33000}
@@ -83,13 +89,13 @@ const Impact = () => {
                   suffix="+"
                 ></CountUp>
               )}
-            </div>
-            <hr className="w-full my-1 border border-purple-400" />
-            <div>
-              <h1 className="text-center">Successful Projects</h1>
-            </div>
+            </Slide>
           </div>
-        </Slide>
+          <hr className="w-full my-1 border border-purple-400" />
+          <div>
+            <h1 className="text-center">Successful Projects</h1>
+          </div>
+        </div>
       </div>
     </div>
   );
