@@ -19,7 +19,7 @@ const Impact = () => {
             <Slide direction="up">
               {inView && (
                 <CountUp
-                  scrollSpyOnce={true}
+                   
                   start={70000}
                   end={75000}
                   duration={1}
@@ -40,6 +40,7 @@ const Impact = () => {
             <Slide direction="up">
               {inView && (
                 <CountUp
+                 
                   start={12000}
                   end={13000}
                   duration={1}
@@ -62,6 +63,7 @@ const Impact = () => {
             <Slide direction="up">
               {inView && (
                 <CountUp
+                 
                   start={10000}
                   end={10500}
                   duration={1}
@@ -82,6 +84,7 @@ const Impact = () => {
             <Slide direction="up">
               {inView && (
                 <CountUp
+                 
                   start={33000}
                   end={3500}
                   duration={1}
