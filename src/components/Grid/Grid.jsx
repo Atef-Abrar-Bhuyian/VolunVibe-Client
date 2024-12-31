@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Grid = ({ volunteerPosts }) => {
   return (
-    <div className="grid grid-cols-3 gap-8 w-11/12 mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-11/12 mx-auto">
       {volunteerPosts.map((post) => (
         <div
           key={post._id}
