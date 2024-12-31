@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import banner1 from "../../assets/banner-images/banner1.jpg";
 import banner2 from "../../assets/banner-images/banner2.jpg";
 import banner3 from "../../assets/banner-images/banner3.jpg";
@@ -11,16 +11,14 @@ import "swiper/css/pagination";
 
 const HeroSlider = () => {
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer w-11/12 mx-auto">
       <Swiper
-        autoplay={{
-          delay: 2000,
-        }}
+        navigation={true}
         loop={true}
         pagination={{
           dynamicBullets: true,
         }}
-        modules={[Pagination, Autoplay]}
+        modules={[Pagination, Navigation]}
         className="mySwiper"
       >
         <SwiperSlide>

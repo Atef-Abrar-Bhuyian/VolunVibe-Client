@@ -1,5 +1,6 @@
 import { Fade } from "react-awesome-reveal";
 import banner1 from "../../assets/banner-images/banner2.jpg"
+import { Link } from "react-router-dom";
 
 const VolunteerCallToAction = () => {
     const sectionStyle = {
@@ -20,7 +21,7 @@ const VolunteerCallToAction = () => {
         <hr className="border border-purple-600 w-56" />
         <div className="flex flex-col md:flex-row gap-4">
           <div>
-            <button className="btn">BECOME A VOLUNTEER</button>
+            <Link to={"/allVolunteerPost"}><button className="btn">BECOME A VOLUNTEER</button></Link>
           </div>
           <div>
             <button className="btn">MAKE A VOLUNTEER NEED POST</button>
