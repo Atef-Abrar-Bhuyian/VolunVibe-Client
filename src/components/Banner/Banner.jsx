@@ -11,7 +11,7 @@ const Banner = () => {
             backgroundPosition: "center",
           };
     return (
-        <div className='min-h-screen mb-20 text-white text-center' style={sectionStyle}>
+        <div className='min-h-screen mb-20 mt-5 text-white text-center' style={sectionStyle}>
             <div className='flex flex-col items-center justify-center min-h-screen space-y-4'>
             <Fade delay={500}>
             <h1 className='text-4xl md:text-6xl font-bold'>Ready to Make an Impact?</h1>
