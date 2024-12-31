@@ -4,7 +4,7 @@ import {  Slide } from "react-awesome-reveal";
 const Faq = () => {
   return (
     <div className="w-4/5 mx-auto my-10">
-       <Slide direction="up"> <h1 className="text-5xl font-bold text-center mb-10">FAQ's</h1></Slide>
+       <Slide direction="up"> <h1 className="text-3xl md:text-5xl font-bold text-center mb-10">FAQ's</h1></Slide>
       <div className="join join-vertical w-full">
         <div className="collapse collapse-arrow join-item border-purple-500 border">
           <input type="radio" name="my-accordion-4" defaultChecked />

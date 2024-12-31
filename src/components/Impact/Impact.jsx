@@ -11,7 +11,7 @@ const Impact = () => {
   return (
     <div className="my-20 md:w-11/12 md:mx-auto">
       <Fade>
-        <h1 className="text-center text-3xl font-bold mb-10">Our Impact</h1>
+        <h1 className="text-5xl font-bold text-center mb-10">Our Impact</h1>
       </Fade>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="text-2xl border-2 border-purple-400 shadow-purple-400 rounded-xl cursor-pointer flex flex-col items-center justify-center p-10 shadow-md">
@@ -19,7 +19,6 @@ const Impact = () => {
             <Slide direction="up">
               {inView && (
                 <CountUp
-                   
                   start={70000}
                   end={75000}
                   duration={1}
@@ -40,7 +39,6 @@ const Impact = () => {
             <Slide direction="up">
               {inView && (
                 <CountUp
-                 
                   start={12000}
                   end={13000}
                   duration={1}
@@ -63,7 +61,6 @@ const Impact = () => {
             <Slide direction="up">
               {inView && (
                 <CountUp
-                 
                   start={10000}
                   end={10500}
                   duration={1}
@@ -84,7 +81,6 @@ const Impact = () => {
             <Slide direction="up">
               {inView && (
                 <CountUp
-                 
                   start={33000}
                   end={3500}
                   duration={1}

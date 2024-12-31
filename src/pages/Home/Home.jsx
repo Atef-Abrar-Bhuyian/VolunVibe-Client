@@ -4,6 +4,7 @@ import Impact from '../../components/Impact/Impact';
 import VolunteerCallToAction from '../../components/VolunteerCallToAction/VolunteerCallToAction';
 import Faq from '../../components/FAQ/Faq';
 import InfoMarquee from '../../components/InfoMarquee/InfoMarquee';
+import VolunteerNeedsNow from '../../components/VolunteerNeedsNow/VolunteerNeedsNow';
 
 
 
@@ -12,6 +13,7 @@ const Home = () => {
         <div>
             <HeroSlider></HeroSlider>
             <Impact></Impact>
+            <VolunteerNeedsNow></VolunteerNeedsNow>
             <VolunteerCallToAction></VolunteerCallToAction>
             <Faq></Faq>
             <InfoMarquee></InfoMarquee>

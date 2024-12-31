@@ -10,7 +10,6 @@ const InfoMarquee = () => {
         <p className="mx-4   text-5xl">32123+ EDUCATED CHILDREN</p>
         <p className="mx-4   text-5xl">15000+ VOLUNTEER HOURS</p>
         <p className="mx-4   text-5xl">300+ EVENTS ORGANIZED</p>
-        <p className="mx-4   text-5xl">Serving in 25+ COUNTRIES</p>
         <p className="mx-4   text-5xl">SUPPORTED BY 50+ PARTNERS</p>
       </Marquee>
     </div>
