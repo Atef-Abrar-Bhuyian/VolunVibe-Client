@@ -6,6 +6,7 @@ import AllVolunteerPage from "../pages/AllVolunteerPage/AllVolunteerPage";
 import VolunteerPostDetails from "../pages/VolunteerPostDetails/VolunteerPostDetails";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 
 const routes = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/volunteerPost/:id",
-        element: <VolunteerPostDetails></VolunteerPostDetails>,
+        element: <PrivateRoute><VolunteerPostDetails></VolunteerPostDetails></PrivateRoute>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/volunteerPost/${params.id}`),
       },
