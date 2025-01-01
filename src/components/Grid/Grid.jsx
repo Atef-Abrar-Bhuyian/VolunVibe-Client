@@ -26,8 +26,8 @@ const Grid = ({ volunteerPosts }) => {
               {post.deadline.split("T")[0]}
             </p>
             <div className="card-actions justify-end">
-              <Link to={"/allVolunteerPost"}>
-                <button className="btn btn-primary">View Details</button>
+              <Link to={`/volunteerPost/${post._id}`}>
+                <button className="btn">View Details</button>
               </Link>
             </div>
           </div>

@@ -3,6 +3,7 @@ import MainLayout from "../MainLayout/MainLayout";
 import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AllVolunteerPage from "../pages/AllVolunteerPage/AllVolunteerPage";
+import VolunteerPostDetails from "../pages/VolunteerPostDetails/VolunteerPostDetails";
 
 const routes = createBrowserRouter([
   {
@@ -19,6 +20,11 @@ const routes = createBrowserRouter([
         path: "/allVolunteerPost",
         element: <AllVolunteerPage></AllVolunteerPage>,
         loader: () => fetch("http://localhost:5000/needVolunteer")
+      },
+      {
+        path: "/volunteerPost/:id",
+        element: <VolunteerPostDetails></VolunteerPostDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/volunteerPost/${params.id}`)
       },
     ],
   },

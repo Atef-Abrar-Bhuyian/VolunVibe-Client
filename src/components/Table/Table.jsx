@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Table = ({volunteerPosts}) => {
   return (
@@ -20,7 +21,9 @@ const Table = ({volunteerPosts}) => {
                 <th>{idx+1}</th>
                 <td>{post.postTitle}</td>
                 <td>{post.category}</td>
-                <td><button className="btn">See Details</button></td>
+                <td>
+                  <Link to={`/volunteerPost/${post._id}`}><button className="btn">See Details</button></Link>
+                </td>
               </tr>)
            }
           </tbody>
