@@ -1,54 +1,55 @@
 import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-// import { toast, ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-// import { authContext } from "../../components/AuthProvider/AuthProvider";
 import login from "../../assets/Lottie/login.json";
 import Lottie from "lottie-react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Fade } from "react-awesome-reveal";
+import { authContext } from "../../auth/AuthProvider/AuthProvider";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
-  //   const { setUser, googleSignIn, handleLogin } = useContext(authContext);
-  //   const [email, setEmail] = useState("");
-  //   const location = useNavigate();
+  const { setUser, googleSignIn, handleLogin } = useContext(authContext);
+  const [email, setEmail] = useState("");
+  const location = useNavigate();
   // Form Login
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  //     const email = e.target.email.value;
-  //     const password = e.target.password.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-  //     handleLogin(email, password)
-  //       .then((result) => {
-  //         const user = result.user;
-  //         location("/");
-  //         setUser(user);
-  //       })
-  //       .catch((error) => {
-  //         toast.error("Invalid Credential, Please Try Again");
-  //       });
-  //   };
+    handleLogin(email, password)
+      .then((result) => {
+        const user = result.user;
+        location("/");
+        setUser(user);
+      })
+      .catch((error) => {
+        toast.error("Invalid Credential, Please Try Again");
+      });
+  };
 
   // ForgetPass route
-  //   const handleForgetPassword = (e) => {
-  //     e.preventDefault();
-  //     location("/forget-password", { state: { email } });
-  //   };
+  const handleForgetPassword = (e) => {
+    e.preventDefault();
+    location("/forget-password", { state: { email } });
+  };
 
-  // Google Login
-  //   const handleGoogleSignIn = () => {
-  //     googleSignIn()
-  //       .then((result) => {
-  //         location("/");
-  //       })
-  //       .catch((error) => {
-  //         toast.error("Please Try Again");
-  //       });
-  //   };
+  //   Google Login
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        // toast.success("Successfully Logged In");
+        location("/");
+      })
+      .catch((error) => {
+        toast.error("Please Try Again");
+      });
+  };
 
   return (
     <div className="my-10 w-11/12 mx-auto">
@@ -59,7 +60,7 @@ const Login = () => {
           <link rel="canonical" href="http://mysite.com/example" />
         </Helmet>
       </HelmetProvider>
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <Fade>
         <div className="flex flex-col md:flex-row">
           {/* Lottie React */}
@@ -71,16 +72,13 @@ const Login = () => {
             <div className="w-full max-w-sm">
               <div className="flex items-center gap-2">
                 <p className="font-semibold">Continue With</p>
-                <button
-                  // onClick={handleGoogleSignIn}
-                  className="btn "
-                >
+                <button onClick={handleGoogleSignIn} className="btn ">
                   <FcGoogle className="text-xl" />
                 </button>
               </div>
               <div className="divider">OR</div>
-              {/* onSubmit={handleSubmit} */}
-              <form className="card-body p-0">
+
+              <form className="card-body p-0" onSubmit={handleSubmit}>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -89,9 +87,9 @@ const Login = () => {
                     name="email"
                     type="email"
                     placeholder="email"
-                    // onChange={(e) => {
-                    //   setEmail(e.target.value);
-                    // }}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                     className="input input-bordered"
                     required
                   />
@@ -121,7 +119,7 @@ const Login = () => {
                   <label className="label">
                     <Link
                       to="/forget-password"
-                      //   onClick={handleForgetPassword}
+                      onClick={handleForgetPassword}
                       className="label-text-alt link link-hover"
                     >
                       Forgot password?

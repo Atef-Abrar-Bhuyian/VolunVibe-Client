@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Fade } from "react-awesome-reveal";
 import { CgProfile } from "react-icons/cg";
 import { MdVolunteerActivism } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
+import { authContext } from "../../auth/AuthProvider/AuthProvider";
 
 const Navbar = () => {
+  const { user, handleLogOut } = useContext(authContext);
   const links = (
     <>
       <li>
@@ -58,37 +60,49 @@ const Navbar = () => {
           </div>
         </Fade>
 
-        {/* Login */}
-        <Fade>
-          <Link to={"/login"} className="btn">
-            Login
-          </Link>
-        </Fade>
+        {/* Conditional Login/Logout */}
+
+        {user ? (
+          <Fade>
+            <Link className="btn" onClick={handleLogOut} to={"/"}>
+              Logout
+            </Link>
+          </Fade>
+        ) : (
+          <Fade>
+            <Link to={"/login"} className="btn">
+              Login
+            </Link>
+          </Fade>
+        )}
 
         {/* My Profile */}
-        <Fade>
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost">
-              <p className="text-2xl">
-                <CgProfile />
-              </p>
+        {user && (
+          <Fade>
+            <div className="dropdown dropdown-end mx-2 rounded-full flex">
+              <div tabIndex={0} role="button" className="">
+                <div className="avatar online items-center justify-center flex">
+                  <div className="w-12 rounded-full">
+                    <img src={user?.photoURL} />
+                  </div>
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-14 w-52 p-2 shadow"
+              >
+                <li>
+                  <NavLink to={"/addVolunteerPost"} className="justify-between">
+                    Add Volunteer Need Post
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/managePost"}>Manage My Posts</NavLink>
+                </li>
+              </ul>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <NavLink to={"/addVolunteerPost"} className="justify-between">
-                  Add Volunteer Need Post
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to={"/managePost"}>Manage My Posts</NavLink>
-              </li>
-            </ul>
-          </div>
-        </Fade>
-
+          </Fade>
+        )}
         {/* Theme Controller */}
         <Fade>
           <label className="swap swap-rotate">
