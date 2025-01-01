@@ -4,6 +4,8 @@ import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AllVolunteerPage from "../pages/AllVolunteerPage/AllVolunteerPage";
 import VolunteerPostDetails from "../pages/VolunteerPostDetails/VolunteerPostDetails";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
 
 const routes = createBrowserRouter([
   {
@@ -14,17 +16,26 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/topNeedVolunteer")
+        loader: () => fetch("http://localhost:5000/topNeedVolunteer"),
       },
       {
         path: "/allVolunteerPost",
         element: <AllVolunteerPage></AllVolunteerPage>,
-        loader: () => fetch("http://localhost:5000/needVolunteer")
+        loader: () => fetch("http://localhost:5000/needVolunteer"),
       },
       {
         path: "/volunteerPost/:id",
         element: <VolunteerPostDetails></VolunteerPostDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/volunteerPost/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/volunteerPost/${params.id}`),
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
     ],
   },

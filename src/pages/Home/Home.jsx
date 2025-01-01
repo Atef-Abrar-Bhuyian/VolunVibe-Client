@@ -6,16 +6,18 @@ import Faq from "../../components/FAQ/Faq";
 import InfoMarquee from "../../components/InfoMarquee/InfoMarquee";
 import VolunteerNeedsNow from "../../components/VolunteerNeedsNow/VolunteerNeedsNow";
 import Banner from "../../components/Banner/Banner";
-import { Helmet } from "react-helmet";
+import { Helmet,HelmetProvider } from "react-helmet-async";
 
 const Home = () => {
   return (
     <div>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>VolunVibe | Home</title>
-        <link rel="canonical" href="http://mysite.com/example" />
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>VolunVibe | Home</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
+      </HelmetProvider>
       <Banner></Banner>
       <HeroSlider></HeroSlider>
       <VolunteerNeedsNow></VolunteerNeedsNow>

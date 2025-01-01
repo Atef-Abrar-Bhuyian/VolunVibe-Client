@@ -4,7 +4,7 @@ import { IoGrid } from "react-icons/io5";
 import { useLoaderData } from "react-router-dom";
 import Grid from "../../components/Grid/Grid";
 import Table from "../../components/Table/Table";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const AllVolunteerPage = () => {
   const volunteerPosts = useLoaderData();
@@ -20,11 +20,13 @@ const AllVolunteerPage = () => {
 
   return (
     <div className="my-10">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>VolunVibe | All Posts</title>
-        <link rel="canonical" href="http://mysite.com/example" />
-      </Helmet>
+       <HelmetProvider>
+              <Helmet>
+                <meta charSet="utf-8" />
+                <title>VolunVibe | Volunteer Posts</title>
+                <link rel="canonical" href="http://mysite.com/example" />
+              </Helmet>
+            </HelmetProvider>
       <div className="flex justify-between w-11/12 md:w-4/5 mx-auto my-10">
         <div>
           <input
