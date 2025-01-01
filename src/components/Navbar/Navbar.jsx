@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Fade } from "react-awesome-reveal";
-import { CgProfile } from "react-icons/cg";
 import { MdVolunteerActivism } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../../auth/AuthProvider/AuthProvider";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, handleLogOut } = useContext(authContext);
@@ -19,6 +19,7 @@ const Navbar = () => {
   );
   return (
     <div className="text-black navbar bg-white bg-opacity-70 backdrop-blur-lg z-10 md:w-11/12 md:mx-auto sticky top-4 rounded-lg">
+      <Tooltip id="profile-tooltip" />
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -82,7 +83,10 @@ const Navbar = () => {
             <div className="dropdown dropdown-end mx-2 rounded-full flex">
               <div tabIndex={0} role="button" className="">
                 <div className="avatar online items-center justify-center flex">
-                  <div className="w-12 rounded-full">
+                  <div className="w-12 rounded-full"
+                  data-tooltip-id="profile-tooltip"
+                  data-tooltip-content={user.displayName}
+                  >
                     <img src={user?.photoURL} />
                   </div>
                 </div>
