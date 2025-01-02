@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React from "react";
 import { Fade } from "react-awesome-reveal";
 import { IoMdTimer } from "react-icons/io";
@@ -22,7 +23,7 @@ const VolunteerNeedsNow = () => {
           >
             <figure>
               <img
-                className="w-full"
+                className="w-full h-80"
                 src={post.thumbnail}
                 alt={post.postTitle}
               />
@@ -36,7 +37,7 @@ const VolunteerNeedsNow = () => {
               <p className="flex items-center gap-1">
                 <IoMdTimer className="text-lg" />
                 <span className="font-semibold">Deadline </span>:{" "}
-                {post.deadline.split("T")[0]}
+                {format(post.deadline,'PPP')}
               </p>
               <div className="card-actions justify-end">
                 <Link to={`/volunteerPost/${post._id}`}>

@@ -11,11 +11,10 @@ import { useNavigate } from "react-router-dom";
 const AddVolunteerPost = () => {
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useContext(authContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
-
     const form = e.target;
     const organizerEmail = form.email.value;
     const organizerName = form.name.value;
@@ -41,12 +40,13 @@ const AddVolunteerPost = () => {
     // make a post request
     axios.post(`http://localhost:5000/addPost`, newPost).then((res) => {
       if (res.data.insertedId) {
+        form.reset();
         Swal.fire({
           title: "Successfully Added!",
           text: "Volunteer Need Post Successfully Added",
           icon: "success",
         });
-        navigate("/")
+        navigate("/manageMyPost");
       }
     });
   };
@@ -165,10 +165,7 @@ const AddVolunteerPost = () => {
                 <label className="label">
                   <span className="label-text">Category</span>
                 </label>
-                <select
-                  name="category" // Add name attribute
-                  className="select select-bordered"
-                >
+                <select name="category" className="select select-bordered">
                   <option disabled>Select Category</option>
                   <option value="Healthcare">Healthcare</option>
                   <option value="Education">Education</option>

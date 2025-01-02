@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React from "react";
 import { IoMdTimer } from "react-icons/io";
 import { MdOutlineCategory } from "react-icons/md";
@@ -9,12 +10,12 @@ const Grid = ({ volunteerPosts }) => {
       {volunteerPosts.map((post) => (
         <div
           key={post._id}
-          className="card card-compact bg-base-100 h-[32rem] shadow-md border-2 border-purple-400 shadow-purple-700"
+          className="card card-compact bg-base-100 shadow-md border-2 border-purple-400 shadow-purple-700"
         >
           <figure>
-            <img className="w-full" src={post.thumbnail} alt={post.postTitle} />
+            <img className="w-full h-80" src={post.thumbnail} alt={post.postTitle} />
           </figure>
-          <div className="card-body">
+          <div className="card-body ">
             <h2 className="card-title">{post.postTitle}</h2>
             <p className="flex items-center gap-1">
               <MdOutlineCategory className="text-lg" />
@@ -23,7 +24,7 @@ const Grid = ({ volunteerPosts }) => {
             <p className="flex items-center gap-1">
               <IoMdTimer className="text-lg" />
               <span className="font-semibold">Deadline </span>:{" "}
-              {post.deadline.split("T")[0]}
+              {format(post.deadline,'PPP')}
             </p>
             <div className="card-actions justify-end">
               <Link to={`/volunteerPost/${post._id}`}>

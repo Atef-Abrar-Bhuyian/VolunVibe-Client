@@ -8,6 +8,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
+import ManageMyPost from "../pages/ManageMyPost/ManageMyPost";
 
 const routes = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/volunteerPost/:id",
-        element: <PrivateRoute><VolunteerPostDetails></VolunteerPostDetails></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <VolunteerPostDetails></VolunteerPostDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/volunteerPost/${params.id}`),
       },
@@ -41,7 +46,19 @@ const routes = createBrowserRouter([
       },
       {
         path: "/addVolunteerPost",
-        element: <PrivateRoute><AddVolunteerPost></AddVolunteerPost></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddVolunteerPost></AddVolunteerPost>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/manageMyPost",
+        element: (
+          <PrivateRoute>
+            <ManageMyPost></ManageMyPost>
+          </PrivateRoute>
+        ),
       },
     ],
   },
