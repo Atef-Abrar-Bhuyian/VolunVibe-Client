@@ -1,6 +1,7 @@
 import React from "react";
 import { Fade } from "react-awesome-reveal";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 import { BiCategory } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
 import { FaRegUser, FaUsers } from "react-icons/fa";
@@ -12,13 +13,15 @@ const VolunteerPostDetails = () => {
   const postDetails = useLoaderData();
   return (
     <div className="my-14 w-11/12 mx-auto">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>VolunVibe | Posts Detials</title>
-        <link rel="canonical" href="http://mysite.com/example" />
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>VolunVibe | Post Details</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
+      </HelmetProvider>
       <Fade delay={500}>
-        <div className="flex justify-between flex-col-reverse lg:flex-row">
+        <div className="flex justify-between gap-10 flex-col-reverse lg:flex-row">
           {/* Information */}
           <div className="flex-1 mt-10">
             {/* Post Title */}
@@ -84,7 +87,7 @@ const VolunteerPostDetails = () => {
             <button className="btn mt-10">Be a Volunteer</button>
           </div>
           {/* Thumbnail */}
-          <div className="">
+          <div className="flex-1">
             <img className="rounded-xl" src={postDetails.thumbnail} alt="" />
           </div>
         </div>

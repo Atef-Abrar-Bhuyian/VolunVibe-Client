@@ -7,6 +7,7 @@ import VolunteerPostDetails from "../pages/VolunteerPostDetails/VolunteerPostDet
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 
 const routes = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/addVolunteerPost",
+        element: <PrivateRoute><AddVolunteerPost></AddVolunteerPost></PrivateRoute>,
       },
     ],
   },

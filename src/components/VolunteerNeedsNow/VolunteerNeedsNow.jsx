@@ -21,7 +21,11 @@ const VolunteerNeedsNow = () => {
             className="card card-compact bg-base-100 h-[32rem] shadow-md border-2 border-purple-400 shadow-purple-700"
           >
             <figure>
-              <img className="w-full" src={post.thumbnail} alt={post.postTitle} />
+              <img
+                className="w-full"
+                src={post.thumbnail}
+                alt={post.postTitle}
+              />
             </figure>
             <div className="card-body">
               <h2 className="card-title">{post.postTitle}</h2>
@@ -32,14 +36,21 @@ const VolunteerNeedsNow = () => {
               <p className="flex items-center gap-1">
                 <IoMdTimer className="text-lg" />
                 <span className="font-semibold">Deadline </span>:{" "}
-                {post.deadline.split('T')[0]}
+                {post.deadline.split("T")[0]}
               </p>
               <div className="card-actions justify-end">
-                <Link to={"/allVolunteerPost"}><button className="btn">View Details</button></Link>
+                <Link to={`/volunteerPost/${post._id}`}>
+                  <button className="btn">View Details</button>
+                </Link>
               </div>
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-10 flex justify-center">
+        <Link to={"/allVolunteerPost"}>
+          <button className="btn">See All</button>
+        </Link>
       </div>
     </div>
   );
