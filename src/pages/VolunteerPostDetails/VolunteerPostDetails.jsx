@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React from "react";
 import { Fade } from "react-awesome-reveal";
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -63,7 +64,7 @@ const VolunteerPostDetails = () => {
                   <IoMdTimer />
                   Deadline:{" "}
                 </span>
-                {postDetails.deadline.split("T", [1])}
+                {format(postDetails.deadline,'PPP')}
               </h3>
 
               {/* Organizer Name & Email */}

@@ -10,19 +10,17 @@ const Table = ({volunteerPosts}) => {
           {/* head */}
           <thead>
             <tr className="border border-purple-600">
-              <th>Sl.</th>
               <th>Title</th>
-              <th>Category</th>
+              <th className="hidden md:block">Category</th>
               <th>Deadline</th>
             </tr>
           </thead>
           <tbody>
            {
-            volunteerPosts.map((post,idx) => 
+            volunteerPosts.map((post) => 
             <tr key={post._id} className="border border-purple-600">
-                <th>{idx+1}</th>
                 <td>{post.postTitle}</td>
-                <td>{post.category}</td>
+                <td className="hidden md:block">{post.category}</td>
                 <td>{format(post.deadline,'PPP')}</td>
                 <td>
                   <Link to={`/volunteerPost/${post._id}`}><button className="btn">See Details</button></Link>
