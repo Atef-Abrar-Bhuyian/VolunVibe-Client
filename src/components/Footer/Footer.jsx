@@ -28,22 +28,22 @@ const Footer = () => {
         <Link to="/addVolunteerPost" className="link link-hover">
           Add Volunteer Need Post
         </Link>
-        <Link to="/managePost" className="link link-hover">
+        <Link to="/manageMyPost" className="link link-hover">
           Manage My Posts
         </Link>
       </nav>
       <nav>
         <h6 className="footer-title">Company</h6>
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
+        <Link className="link link-hover">About us</Link>
+        <Link className="link link-hover">Contact</Link>
+        <Link className="link link-hover">Jobs</Link>
+        <Link className="link link-hover">Press kit</Link>
       </nav>
       <nav>
         <h6 className="footer-title">Legal</h6>
-        <a className="link link-hover">Terms of use</a>
-        <a className="link link-hover">Privacy policy</a>
-        <a className="link link-hover">Cookie policy</a>
+        <Link className="link link-hover">Terms of use</Link>
+        <Link className="link link-hover">Privacy policy</Link>
+        <Link className="link link-hover">Cookie policy</Link>
       </nav>
       <ScrollToTop
         smooth

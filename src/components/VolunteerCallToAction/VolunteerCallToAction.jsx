@@ -24,7 +24,7 @@ const VolunteerCallToAction = () => {
             <Link to={"/allVolunteerPost"}><button className="btn">BECOME A VOLUNTEER</button></Link>
           </div>
           <div>
-            <button className="btn">MAKE A VOLUNTEER NEED POST</button>
+            <Link to={"/addVolunteerPost"}><button className="btn">MAKE A VOLUNTEER NEED POST</button></Link>
           </div>
         </div>
       </Fade>
