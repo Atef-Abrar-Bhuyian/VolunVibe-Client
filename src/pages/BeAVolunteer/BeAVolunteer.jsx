@@ -1,22 +1,19 @@
 import React, { useContext, useState } from "react";
-import { Fade } from "react-awesome-reveal";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { authContext } from "../../auth/AuthProvider/AuthProvider";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { Helmet, HelmetProvider } from "react-helmet-async";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const ModifyPost = () => {
-  const post = useLoaderData();
+const BeAVolunteer = () => {
   const { user } = useContext(authContext);
+  const post = useLoaderData();
   const [startDate, setStartDate] = useState(post.deadline);
   const [defaultSelect, setDefaultSelect] = useState(post.category);
   const navigate = useNavigate();
 
-  //   Update Post
-  const handleModifyPost = (e) => {
+  //   Be A Volunteer
+  const handleBeAVolunteer = (e) => {
     e.preventDefault();
     const form = e.target;
     const organizerEmail = form.email.value;
@@ -28,7 +25,11 @@ const ModifyPost = () => {
     const category = form.category.value;
     const location = form.location.value;
     const deadline = startDate;
-    const updatedPost = {
+    const volunteerEmail = form.volunteerEmail.value;
+    const volunteerName = form.volunteerName.value;
+    const status = form.status.value;
+
+    const newRequest = {
       organizerEmail,
       organizerName,
       thumbnail,
@@ -38,16 +39,19 @@ const ModifyPost = () => {
       noOfVolunteersNeeded,
       location,
       category,
+      volunteerEmail,
+      volunteerName,
+      status,
     };
 
-    // Modify a post
+    // Add to db
     axios
-      .put(`http://localhost:5000/updatePost/${post._id}`, updatedPost)
+      .post(`http://localhost:5000/volunteerRequest`, newRequest)
       .then((res) => {
-        if (res.data.modifiedCount) {
+        if (res.data.insertedId) {
           Swal.fire({
-            title: "Successfully Modified!",
-            text: "Your Post Modified Successfully",
+            title: "Request Sent!",
+            text: "Your request has been successfully sent to the organizer.",
             icon: "success",
           });
           navigate("/manageMyPost");
@@ -56,24 +60,70 @@ const ModifyPost = () => {
   };
 
   return (
-    <div className="my-10">
-      <HelmetProvider>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>VolunVibe | Modify Post</title>
-          <link rel="canonical" href="http://mysite.com/example" />
-        </Helmet>
-      </HelmetProvider>
-
-      <div>
-        <Fade>
-          <h1 className="text-3xl font-bold text-center">Modify Your Post</h1>
-        </Fade>
-      </div>
-
+    <div>
       <div className="flex items-center justify-center">
         <div className="card bg-base-100 md:w-1/2 w-4/5 shadow-purple-600 shadow-md my-10">
-          <form onSubmit={handleModifyPost} className="card-body">
+          <form onSubmit={handleBeAVolunteer} className="card-body">
+            {/* Volunteer Information */}
+            <h1 className="text-lg font-bold text-center">
+              Volunteer Information
+            </h1>
+            <div className="md:flex justify-between gap-20">
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">Volunteer Email</span>
+                </label>
+                <input
+                  type="text"
+                  defaultValue={user?.email}
+                  name="volunteerEmail"
+                  className="input input-bordered"
+                  readOnly
+                />
+              </div>
+
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">Volunteer Name</span>
+                </label>
+                <input
+                  type="text"
+                  defaultValue={user?.displayName}
+                  name="volunteerName"
+                  className="input input-bordered"
+                  readOnly
+                />
+              </div>
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Suggestion</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Do You Have Any Suggestion?"
+                name="description"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control flex-1">
+              <label className="label">
+                <span className="label-text">Status</span>
+              </label>
+              <select
+                defaultValue={defaultSelect}
+                name="status"
+                className="select select-bordered"
+              >
+                <option disabled>Select</option>
+                <option value="Requested">Requested</option>{" "}
+              </select>
+            </div>
+
+            {/* Post Information */}
+            <h1 className="text-lg font-bold text-center">Post Information</h1>
             <div className="md:flex justify-between gap-20">
               <div className="form-control w-full">
                 <label className="label">
@@ -81,7 +131,7 @@ const ModifyPost = () => {
                 </label>
                 <input
                   type="text"
-                  defaultValue={user?.email}
+                  defaultValue={post?.organizerEmail}
                   name="email"
                   className="input input-bordered"
                   readOnly
@@ -94,7 +144,7 @@ const ModifyPost = () => {
                 </label>
                 <input
                   type="text"
-                  defaultValue={user?.displayName}
+                  defaultValue={post?.organizerName}
                   name="name"
                   className="input input-bordered"
                   readOnly
@@ -113,7 +163,7 @@ const ModifyPost = () => {
                   name="image"
                   defaultValue={post.thumbnail}
                   className="input input-bordered"
-                  required
+                  readOnly
                 />
               </div>
               <div className="form-control w-full">
@@ -126,7 +176,7 @@ const ModifyPost = () => {
                   placeholder="Post Title"
                   name="title"
                   className="input input-bordered"
-                  required
+                  readOnly
                 />
               </div>
             </div>
@@ -141,7 +191,7 @@ const ModifyPost = () => {
                 placeholder="Description"
                 name="description"
                 className="input input-bordered"
-                required
+                readOnly
               />
             </div>
 
@@ -156,7 +206,7 @@ const ModifyPost = () => {
                   placeholder="Volunteer Needed"
                   name="numberOfVolunteer"
                   className="input input-bordered"
-                  required
+                  readOnly
                 />
               </div>
 
@@ -168,6 +218,7 @@ const ModifyPost = () => {
                   showIcon
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
+                  readOnly
                 />
               </div>
             </div>
@@ -181,6 +232,7 @@ const ModifyPost = () => {
                   defaultValue={defaultSelect}
                   name="category"
                   className="select select-bordered"
+                  disabled
                 >
                   <option disabled>Select Category</option>
                   <option value="Healthcare">Healthcare</option>
@@ -200,13 +252,13 @@ const ModifyPost = () => {
                   placeholder="Location"
                   name="location"
                   className="input input-bordered"
-                  required
+                  readOnly
                 />
               </div>
             </div>
 
             <div className="form-control mt-6">
-              <button className="btn ">Update Post</button>
+              <button className="btn ">Request</button>
             </div>
           </form>
         </div>
@@ -215,4 +267,4 @@ const ModifyPost = () => {
   );
 };
 
-export default ModifyPost;
+export default BeAVolunteer;

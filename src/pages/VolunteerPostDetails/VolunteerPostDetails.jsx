@@ -1,5 +1,6 @@
+import axios from "axios";
 import { format } from "date-fns";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
@@ -8,10 +9,19 @@ import { CiLocationOn } from "react-icons/ci";
 import { FaRegUser, FaUsers } from "react-icons/fa";
 import { IoMdTimer } from "react-icons/io";
 import { MdMarkEmailRead } from "react-icons/md";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const VolunteerPostDetails = () => {
   const postDetails = useLoaderData();
+  const [alreadyRequested,setAlreadyRequested] = useState(false)
+
+  useEffect(()=>{
+    axios.get()
+  },[])
+
+
+
+
   return (
     <div className="my-14 w-11/12 mx-auto">
       <HelmetProvider>
@@ -64,7 +74,7 @@ const VolunteerPostDetails = () => {
                   <IoMdTimer />
                   Deadline:{" "}
                 </span>
-                {format(postDetails.deadline,'PPP')}
+                {format(postDetails.deadline, "PPP")}
               </h3>
 
               {/* Organizer Name & Email */}
@@ -85,7 +95,9 @@ const VolunteerPostDetails = () => {
             </div>
 
             {/* Be a Volunteer btn */}
-            <button className="btn mt-10">Be a Volunteer</button>
+            <Link to={`/beAVolunteer/${postDetails._id}`}>
+              <button className="btn mt-10">Be a Volunteer</button>
+            </Link>
           </div>
           {/* Thumbnail */}
           <div className="flex-1">
