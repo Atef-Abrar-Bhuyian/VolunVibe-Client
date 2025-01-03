@@ -9,6 +9,7 @@ import Register from "../pages/Register/Register";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 import ManageMyPost from "../pages/ManageMyPost/ManageMyPost";
+import ModifyPost from "../pages/ModifyPost/ModifyPost";
 
 const routes = createBrowserRouter([
   {
@@ -60,6 +61,15 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/modifyPost/:id",
+        element: (
+          <PrivateRoute>
+            <ModifyPost></ModifyPost>
+          </PrivateRoute>
+        ),
+        loader: ({params})=> fetch(`http://localhost:5000/volunteerPost/${params.id}`)
+      },  
     ],
   },
 ]);

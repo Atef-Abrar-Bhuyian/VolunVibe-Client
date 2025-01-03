@@ -1,19 +1,22 @@
 import React, { useContext, useState } from "react";
+import { Fade } from "react-awesome-reveal";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { authContext } from "../../auth/AuthProvider/AuthProvider";
-import { Helmet, HelmetProvider } from "react-helmet-async";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
-const AddVolunteerPost = () => {
-  const [startDate, setStartDate] = useState(new Date());
+const ModifyPost = () => {
+  const post = useLoaderData();
   const { user } = useContext(authContext);
+  const [startDate, setStartDate] = useState(post.deadline);
+  const [defaultSelect, setDefaultSelect] = useState(post.category);
   const navigate = useNavigate();
 
-  const handleAddPost = (e) => {
+  //   Update Post
+  const handleModifyPost = (e) => {
     e.preventDefault();
     const form = e.target;
     const organizerEmail = form.email.value;
@@ -37,18 +40,19 @@ const AddVolunteerPost = () => {
       category,
     };
 
-    // make a post request
-    axios.post(`http://localhost:5000/addPost`, newPost).then((res) => {
-      if (res.data.insertedId) {
-        form.reset();
-        Swal.fire({
-          title: "Successfully Added!",
-          text: "Volunteer Need Post Successfully Added",
-          icon: "success",
-        });
-        navigate("/manageMyPost");
-      }
-    });
+    // Modify a post
+    axios
+      .put(`http://localhost:5000/updatePost/${post._id}`, newPost)
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            title: "Successfully Modified!",
+            text: "Your Post Modified Successfully",
+            icon: "success",
+          });
+          navigate("/manageMyPost");
+        }
+      });
   };
 
   return (
@@ -56,16 +60,20 @@ const AddVolunteerPost = () => {
       <HelmetProvider>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>VolunVibe | Add Posts</title>
+          <title>VolunVibe | Modify Post</title>
           <link rel="canonical" href="http://mysite.com/example" />
         </Helmet>
       </HelmetProvider>
-      <ToastContainer></ToastContainer>
 
-      {/* Add Review Form */}
+      <div>
+        <Fade>
+          <h1 className="text-3xl font-bold text-center">Modify Your Post</h1>
+        </Fade>
+      </div>
+
       <div className="flex items-center justify-center">
         <div className="card bg-base-100 md:w-1/2 w-4/5 shadow-purple-600 shadow-md my-10">
-          <form onSubmit={handleAddPost} className="card-body">
+          <form onSubmit={handleModifyPost} className="card-body">
             <div className="md:flex justify-between gap-20">
               <div className="form-control w-full">
                 <label className="label">
@@ -103,6 +111,7 @@ const AddVolunteerPost = () => {
                   type="text"
                   placeholder="Thumbnail URL"
                   name="image"
+                  defaultValue={post.thumbnail}
                   className="input input-bordered"
                   required
                 />
@@ -113,6 +122,7 @@ const AddVolunteerPost = () => {
                 </label>
                 <input
                   type="text"
+                  defaultValue={post.postTitle}
                   placeholder="Post Title"
                   name="title"
                   className="input input-bordered"
@@ -127,6 +137,7 @@ const AddVolunteerPost = () => {
               </label>
               <input
                 type="text"
+                defaultValue={post.description}
                 placeholder="Description"
                 name="description"
                 className="input input-bordered"
@@ -141,6 +152,7 @@ const AddVolunteerPost = () => {
                 </label>
                 <input
                   type="number"
+                  defaultValue={post.noOfVolunteersNeeded}
                   placeholder="Volunteer Needed"
                   name="numberOfVolunteer"
                   className="input input-bordered"
@@ -165,7 +177,11 @@ const AddVolunteerPost = () => {
                 <label className="label">
                   <span className="label-text">Category</span>
                 </label>
-                <select name="category" className="select select-bordered">
+                <select
+                  defaultValue={defaultSelect}
+                  name="category"
+                  className="select select-bordered"
+                >
                   <option disabled>Select Category</option>
                   <option value="Healthcare">Healthcare</option>
                   <option value="Education">Education</option>
@@ -180,6 +196,7 @@ const AddVolunteerPost = () => {
                 </label>
                 <input
                   type="text"
+                  defaultValue={post.location}
                   placeholder="Location"
                   name="location"
                   className="input input-bordered"
@@ -189,9 +206,7 @@ const AddVolunteerPost = () => {
             </div>
 
             <div className="form-control mt-6">
-              <button className="btn bg-gradient-to-r from-indigo-800 to-purple-800 shadow-purple-700 shadow-md text-white border-purple-500 hover:border-white">
-                Add Post
-              </button>
+              <button className="btn ">Update Post</button>
             </div>
           </form>
         </div>
@@ -200,4 +215,4 @@ const AddVolunteerPost = () => {
   );
 };
 
-export default AddVolunteerPost;
+export default ModifyPost;

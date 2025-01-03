@@ -9,6 +9,7 @@ import Lottie from "lottie-react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Fade } from "react-awesome-reveal";
 import { authContext } from "../../auth/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
@@ -25,6 +26,7 @@ const Login = () => {
     handleLogin(email, password)
       .then((result) => {
         const user = result.user;
+        Swal.fire("Successfully Login");
         location("/");
         setUser(user);
       })
@@ -43,7 +45,7 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        // toast.success("Successfully Logged In");
+        Swal.fire("Successfully Login");
         location("/");
       })
       .catch((error) => {

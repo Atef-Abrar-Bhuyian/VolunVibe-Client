@@ -9,6 +9,7 @@ import register from "../../assets/Lottie/register.json";
 import Lottie from "lottie-react";
 import { Fade } from "react-awesome-reveal";
 import { authContext } from "../../auth/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const location = useNavigate();
@@ -44,6 +45,7 @@ const Register = () => {
       .then((result) => {
         updateUserProfile({ displayName: name, photoURL: photo });
         const user = result.user;
+        Swal.fire("Successfully Login");
         location("/");
       })
       .catch((error) => {
@@ -55,6 +57,7 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
+        Swal.fire("Successfully Login");
         location("/");
       })
       .catch((error) => {
@@ -87,15 +90,12 @@ const Register = () => {
             <div className="flex items-center gap-4">
               {/* Google btn */}
               <p className="font-semibold">Continue With</p>
-              <button
-                  onClick={handleGoogleSignIn}
-                className="btn"
-              >
+              <button onClick={handleGoogleSignIn} className="btn">
                 <FcGoogle className="text-xl" />
               </button>
             </div>
             <div className="divider">OR</div>
-           
+
             <form onSubmit={handleSubmit}>
               {/* Name */}
               <div className="form-control">

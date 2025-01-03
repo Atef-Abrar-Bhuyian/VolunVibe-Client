@@ -9,6 +9,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 import notFound from "../../assets/Lottie/notFound.json";
 import Lottie from "lottie-react";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ManageMyPost = () => {
   const { user } = useContext(authContext);
@@ -87,9 +88,11 @@ const ManageMyPost = () => {
                       <td className="hidden md:block">{post.category}</td>
                       <td>{format(post.deadline, "PPP")}</td>
                       <td className="flex justify-center gap-2">
-                        <button className="btn">
-                          <FaRegEdit />
-                        </button>
+                        <Link to={`/modifyPost/${post._id}`}>
+                          <button className="btn">
+                            <FaRegEdit />
+                          </button>
+                        </Link>
                         <button
                           onClick={() => handleDelete(post._id)}
                           className="btn"
