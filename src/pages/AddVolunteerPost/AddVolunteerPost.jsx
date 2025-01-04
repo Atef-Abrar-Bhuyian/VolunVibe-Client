@@ -38,6 +38,10 @@ const AddVolunteerPost = () => {
       category,
     };
 
+    if (noOfVolunteersNeeded <= 0) {
+      return toast.error("Number of Volunteer Needed Must be Greater than 0");
+    }
+
     if (compareAsc(new Date(), new Date(deadline)) === 1) {
       return toast.error("The date can't be changed to an earlier day");
     }
