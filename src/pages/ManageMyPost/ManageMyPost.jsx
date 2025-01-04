@@ -14,11 +14,18 @@ import { Link } from "react-router-dom";
 const ManageMyPost = () => {
   const { user } = useContext(authContext);
   const [posts, setPosts] = useState([]);
+  const [requestPosts, setRequestPosts] = useState([]);
 
   useEffect(() => {
     axios
       .get(`http://localhost:5000/post/${user?.email}`)
       .then((res) => setPosts(res.data));
+  }, [user]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/requesPost/${user?.email}`)
+      .then((res) => setRequestPosts(res.data));
   }, [user]);
 
   // delete functionality
@@ -41,6 +48,31 @@ const ManageMyPost = () => {
         axios.delete(`http://localhost:5000/post/${id}`).then((res) => {
           const updatedResult = posts.filter((post) => post._id !== id);
           setPosts(updatedResult);
+        });
+      }
+    });
+  };
+
+  // Delete Request
+  const handleRequesDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your Request has been deleted.",
+          icon: "success",
+        });
+        axios.delete(`http://localhost:5000/requestPost/${id}`).then((res) => {
+          const updatedResult = requestPosts.filter((post) => post._id !== id);
+          setRequestPosts(updatedResult);
         });
       }
     });
@@ -115,15 +147,59 @@ const ManageMyPost = () => {
       </div>
 
       {/* My Volunteer Requests  */}
+
       <div>
         <div>
+          {/* Heading */}
           <Slide>
-            <h1 className="text-3xl my-6 font-bold text-center">
+            <h1 className="text-3xl text-center mb-6 font-bold mt-10">
               My Volunteer Requests
             </h1>
           </Slide>
         </div>
-        <div></div>
+        {/* Table */}
+        {requestPosts.length > 0 ? (
+          <Fade delay={500}>
+            {/* Table */}
+            <div className="overflow-x-auto rounded-2xl border border-purple-600">
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr className="border border-purple-600">
+                    <th>Post Title</th>
+                    <th className="hidden md:block">Status</th>
+                    <th>Category</th>
+                    <th>Deadline</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* row 1 */}
+                  {requestPosts.map((post) => (
+                    <tr key={post._id} className="border border-purple-600">
+                      <td>{post.postTitle}</td>
+                      <td>{post.status}</td>
+                      <td className="hidden md:block">{post.category}</td>
+                      <td>{format(post.deadline, "PPP")}</td>
+                      <td className="flex justify-center gap-2">
+                        <button
+                          onClick={() => handleRequesDelete(post._id)}
+                          className="btn"
+                        >
+                          <MdDeleteOutline />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Fade>
+        ) : (
+          <div className="flex items-center justify-center">
+            <Lottie className="w-[60px]" animationData={notFound}></Lottie>
+            <h4 className="text-2xl font-bold">No Data Found</h4>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -28,8 +28,9 @@ const BeAVolunteer = () => {
     const volunteerEmail = form.volunteerEmail.value;
     const volunteerName = form.volunteerName.value;
     const status = form.status.value;
-
+    const suggestion = form.suggestion.value;
     const newRequest = {
+      PostId:post._id,
       organizerEmail,
       organizerName,
       thumbnail,
@@ -41,6 +42,7 @@ const BeAVolunteer = () => {
       category,
       volunteerEmail,
       volunteerName,
+      suggestion,
       status,
     };
 
@@ -103,7 +105,7 @@ const BeAVolunteer = () => {
               <input
                 type="text"
                 placeholder="Do You Have Any Suggestion?"
-                name="description"
+                name="suggestion"
                 className="input input-bordered"
                 required
               />

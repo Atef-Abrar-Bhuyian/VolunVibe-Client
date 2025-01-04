@@ -7,6 +7,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { compareAsc } from "date-fns";
 
 const AddVolunteerPost = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -36,6 +37,10 @@ const AddVolunteerPost = () => {
       location,
       category,
     };
+
+    if (compareAsc(new Date(), new Date(deadline)) === 1) {
+      return toast.error("The date can't be changed to an earlier day");
+    }
 
     // make a post request
     axios.post(`http://localhost:5000/addPost`, newPost).then((res) => {

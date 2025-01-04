@@ -1,6 +1,6 @@
 import axios from "axios";
 import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
@@ -9,21 +9,47 @@ import { CiLocationOn } from "react-icons/ci";
 import { FaRegUser, FaUsers } from "react-icons/fa";
 import { IoMdTimer } from "react-icons/io";
 import { MdMarkEmailRead } from "react-icons/md";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { authContext } from "../../auth/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import { toast, ToastContainer } from "react-toastify";
 
 const VolunteerPostDetails = () => {
   const postDetails = useLoaderData();
-  const [alreadyRequested,setAlreadyRequested] = useState(false)
+  const { user } = useContext(authContext);
+  const [alreadyRequested, setAlreadyRequested] = useState(false);
+  const navigate = useNavigate();
 
-  useEffect(()=>{
-    axios.get()
-  },[])
+  useEffect(() => {
+    axios.get("http://localhost:5000/volunteerRequest").then((res) => {
+      const checkingRequest = res.data.find(
+        (post) =>
+          postDetails._id === post.PostId && post.volunteerEmail === user?.email
+      );
+      if (checkingRequest) {
+        setAlreadyRequested(true);
+      }
+    });
+  }, [postDetails]);
 
-
-
+  const handleApplyVolunteer = () => {
+    //
+    if (user.email === postDetails.organizerEmail) {
+      return toast.error("You Cannot Apply To Your Post");
+    } else if (postDetails.noOfVolunteersNeeded === 0) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Volunteer slots are fully filled.Thank you for your interest!",
+      });
+    } else {
+      navigate(`/beAVolunteer/${postDetails._id}`);
+    }
+  };
 
   return (
     <div className="my-14 w-11/12 mx-auto">
+      <ToastContainer></ToastContainer>
       <HelmetProvider>
         <Helmet>
           <meta charSet="utf-8" />
@@ -95,9 +121,15 @@ const VolunteerPostDetails = () => {
             </div>
 
             {/* Be a Volunteer btn */}
-            <Link to={`/beAVolunteer/${postDetails._id}`}>
-              <button className="btn mt-10">Be a Volunteer</button>
-            </Link>
+            {alreadyRequested === true ? (
+              <button className="btn mt-10" disabled>
+                Already Requested
+              </button>
+            ) : (
+              <button onClick={handleApplyVolunteer} className="btn mt-10">
+                Be a Volunteer
+              </button>
+            )}
           </div>
           {/* Thumbnail */}
           <div className="flex-1">
