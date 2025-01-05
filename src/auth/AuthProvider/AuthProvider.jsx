@@ -12,6 +12,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
+import axios from "axios";
 
 const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
@@ -50,8 +51,28 @@ const AuthProvider = ({ children }) => {
 
   // observer
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser?.email) {
+        setUser(currentUser);
+        // token
+        const { data } = await axios.post(
+          `http://localhost:5000/jwt`,
+          {
+            email: currentUser?.email,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+      } else {
+        setUser(currentUser);
+        const { data } = await axios.get(
+          `http://localhost:5000/jwtLogout`,
+          {
+            withCredentials: true,
+          }
+        );
+      }
       setLoading(false);
     });
 
