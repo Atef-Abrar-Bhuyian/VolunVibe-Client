@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
         setUser(currentUser);
         // token
         const { data } = await axios.post(
-          `http://localhost:5000/jwt`,
+          `https://assignment12-server-gold.vercel.app/jwt`,
           {
             email: currentUser?.email,
           },
@@ -67,7 +67,7 @@ const AuthProvider = ({ children }) => {
       } else {
         setUser(currentUser);
         const { data } = await axios.get(
-          `http://localhost:5000/jwtLogout`,
+          `https://assignment12-server-gold.vercel.app/jwtLogout`,
           {
             withCredentials: true,
           }

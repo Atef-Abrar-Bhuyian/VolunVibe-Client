@@ -48,9 +48,9 @@ const VolunteerNeedsNow = () => {
           </div>
         ))}
       </div>
-      <div className="mt-10 flex justify-center">
+      <div className="mt-10 flex justify-end">
         <Link to={"/allVolunteerPost"}>
-          <button className="btn">See All</button>
+          <button className="btn">See All Volunteer Posts</button>
         </Link>
       </div>
     </div>

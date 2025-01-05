@@ -15,7 +15,7 @@ const AllVolunteerPage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/needVolunteer?search=${search}`)
+      .get(`https://assignment12-server-gold.vercel.app/needVolunteer?search=${search}`)
       .then((res) => setVolunteerPosts(res.data));
   }, [search]);
 
