@@ -7,8 +7,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ModifyPost = () => {
+  const axiosSecure = useAxiosSecure();
   const post = useLoaderData();
   const { user } = useContext(authContext);
   const [startDate, setStartDate] = useState(post.deadline);
@@ -41,18 +43,16 @@ const ModifyPost = () => {
     };
 
     // Modify a post
-    axios
-      .put(`http://localhost:5000/updatePost/${post._id}`, updatedPost)
-      .then((res) => {
-        if (res.data.modifiedCount) {
-          Swal.fire({
-            title: "Successfully Modified!",
-            text: "Your Post Modified Successfully",
-            icon: "success",
-          });
-          navigate("/manageMyPost");
-        }
-      });
+    axiosSecure.put(`/updatePost/${post._id}`, updatedPost).then((res) => {
+      if (res.data.modifiedCount) {
+        Swal.fire({
+          title: "Successfully Modified!",
+          text: "Your Post Modified Successfully",
+          icon: "success",
+        });
+        navigate("/manageMyPost");
+      }
+    });
   };
 
   return (

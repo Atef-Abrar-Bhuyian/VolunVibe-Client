@@ -4,27 +4,29 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { authContext } from "../../auth/AuthProvider/AuthProvider";
 import { format } from "date-fns";
 import { FaRegEdit } from "react-icons/fa";
-import { MdDeleteOutline } from "react-icons/md";
+import { MdCancel, MdDeleteOutline } from "react-icons/md";
 import { Fade, Slide } from "react-awesome-reveal";
 import notFound from "../../assets/Lottie/notFound.json";
 import Lottie from "lottie-react";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageMyPost = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(authContext);
   const [posts, setPosts] = useState([]);
   const [requestPosts, setRequestPosts] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/post/${user?.email}`)
+    axiosSecure
+      .get(`/post/${user?.email}`)
       .then((res) => setPosts(res.data));
   }, [user]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/requesPost/${user?.email}`)
+    axiosSecure
+      .get(`/requesPost/${user?.email}`)
       .then((res) => setRequestPosts(res.data));
   }, [user]);
 
@@ -45,7 +47,7 @@ const ManageMyPost = () => {
           text: "Your file has been deleted.",
           icon: "success",
         });
-        axios.delete(`http://localhost:5000/post/${id}`).then((res) => {
+        axiosSecure.delete(`/post/${id}`).then((res) => {
           const updatedResult = posts.filter((post) => post._id !== id);
           setPosts(updatedResult);
         });
@@ -70,7 +72,7 @@ const ManageMyPost = () => {
           text: "Your Request has been deleted.",
           icon: "success",
         });
-        axios.delete(`http://localhost:5000/requestPost/${id}`).then((res) => {
+        axiosSecure.delete(`/requestPost/${id}`).then((res) => {
           const updatedResult = requestPosts.filter((post) => post._id !== id);
           setRequestPosts(updatedResult);
         });
@@ -110,6 +112,7 @@ const ManageMyPost = () => {
                     <th>Post Title</th>
                     <th className="hidden md:block">Category</th>
                     <th>Deadline</th>
+                    <th>Edit / Delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -119,7 +122,7 @@ const ManageMyPost = () => {
                       <td>{post.postTitle}</td>
                       <td className="hidden md:block">{post.category}</td>
                       <td>{format(post.deadline, "PPP")}</td>
-                      <td className="flex justify-center gap-2">
+                      <td className="flex justify-start gap-2">
                         <Link to={`/modifyPost/${post._id}`}>
                           <button className="btn">
                             <FaRegEdit />
@@ -170,6 +173,7 @@ const ManageMyPost = () => {
                     <th className="hidden md:block">Status</th>
                     <th>Category</th>
                     <th>Deadline</th>
+                    <th>Cancel</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -180,12 +184,12 @@ const ManageMyPost = () => {
                       <td>{post.status}</td>
                       <td className="hidden md:block">{post.category}</td>
                       <td>{format(post.deadline, "PPP")}</td>
-                      <td className="flex justify-center gap-2">
+                      <td className="flex justify-start">
                         <button
                           onClick={() => handleRequesDelete(post._id)}
                           className="btn"
                         >
-                          <MdDeleteOutline />
+                          <MdCancel />
                         </button>
                       </td>
                     </tr>
