@@ -6,18 +6,29 @@ import Grid from "../../components/Grid/Grid";
 import Table from "../../components/Table/Table";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import axios from "axios";
+import "./AllVolunteerPage.css";
+import {
+  IoIosArrowDropleftCircle,
+  IoIosArrowDroprightCircle,
+} from "react-icons/io";
 
 const AllVolunteerPage = () => {
-  // const volunteerPosts = useLoaderData();
+  const { count } = useLoaderData();
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const [grid, setGrid] = useState(true);
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+  const postsPerPage = 6;
+  const numberOfPages = Math.ceil(count / postsPerPage);
+  const pages = [...Array(numberOfPages).keys()];
 
   useEffect(() => {
     axios
-      .get(`https://assignment12-server-gold.vercel.app/needVolunteer?search=${search}`)
+      .get(
+        `https://assignment12-server-gold.vercel.app/needVolunteer?search=${search}&page=${currentPage}&size=${postsPerPage}`
+      )
       .then((res) => setVolunteerPosts(res.data));
-  }, [search]);
+  }, [search, currentPage,postsPerPage]);
 
   const handleGrid = () => {
     setGrid(true);
@@ -25,6 +36,18 @@ const AllVolunteerPage = () => {
 
   const handleTable = () => {
     setGrid(false);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   return (
@@ -39,7 +62,12 @@ const AllVolunteerPage = () => {
       <div className="flex justify-between w-11/12 md:w-11/12 mx-auto my-10">
         <div>
           <label className="input input-bordered flex items-center gap-2">
-            <input type="text" onChange={e=> setSearch(e.target.value)} className="grow" placeholder="Search" />
+            <input
+              type="text"
+              onChange={(e) => setSearch(e.target.value)}
+              className="grow"
+              placeholder="Search"
+            />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -68,6 +96,27 @@ const AllVolunteerPage = () => {
       ) : (
         <Table volunteerPosts={volunteerPosts}></Table>
       )}
+
+      <div className="pagination">
+        <button onClick={handlePrevPage} className="btn">
+          <IoIosArrowDropleftCircle />
+        </button>
+        {pages.map((page) => (
+          <button
+            key={page}
+            className={`btn ${
+              currentPage === page ? "selected text-white" : ""
+            }`}
+            onClick={() => setCurrentPage(page)}
+          >
+            {page}
+          </button>
+        ))}
+        <button onClick={handleNextPage} className="btn">
+          <IoIosArrowDroprightCircle />
+        </button>
+      </div>
+      <p>currentPage:{currentPage}</p>
     </div>
   );
 };
