@@ -109,14 +109,13 @@ const AllVolunteerPage = () => {
             }`}
             onClick={() => setCurrentPage(page)}
           >
-            {page}
+            {page+1}
           </button>
         ))}
         <button onClick={handleNextPage} className="btn">
           <IoIosArrowDroprightCircle />
         </button>
       </div>
-      <p>currentPage:{currentPage}</p>
     </div>
   );
 };
