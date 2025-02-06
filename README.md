@@ -1,6 +1,6 @@
 # VolunVibe
 
-VolunVibe is a modern platform that makes it easy for volunteers to connect with opportunities in a simple and engaging way. It helps organize volunteer efforts and boosts the impact of community projects.
+VolunVibe is a platform that connects individuals with volunteer opportunities. Users can easily search for volunteer posts based on their interests and skills, and sign up to make a meaningful impact in their communities. Whether you're looking to contribute time and effort to a cause or find a project that aligns with your values, VolunVibe makes it simple to discover and join volunteer initiatives.
 
 ---
 
