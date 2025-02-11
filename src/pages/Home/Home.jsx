@@ -6,7 +6,7 @@ import Faq from "../../components/FAQ/Faq";
 import InfoMarquee from "../../components/InfoMarquee/InfoMarquee";
 import VolunteerNeedsNow from "../../components/VolunteerNeedsNow/VolunteerNeedsNow";
 import Banner from "../../components/Banner/Banner";
-import { Helmet,HelmetProvider } from "react-helmet-async";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Home = () => {
   return (

@@ -13,7 +13,7 @@ const VolunteerCallToAction = () => {
       };
   return (
     <div className="flex flex-col items-center justify-center space-y-4 my-10 text-center text-white" style={sectionStyle}>
-      <Fade delay={500}>
+      <Fade delay={500} triggerOnce={true}>
         <h1 className="text-4xl font-bold">Are You Ready To Volunteer?</h1>
         <p className="text-xl italic">
           start one of our programm today and help people in need

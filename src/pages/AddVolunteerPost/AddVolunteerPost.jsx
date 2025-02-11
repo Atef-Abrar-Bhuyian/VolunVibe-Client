@@ -47,7 +47,7 @@ const AddVolunteerPost = () => {
     }
 
     // make a post request
-    axios.post(`https://assignment12-server-gold.vercel.app/addPost`, newPost).then((res) => {
+    axios.post(`http://localhost:5000/addPost`, newPost).then((res) => {
       if (res.data.insertedId) {
         form.reset();
         Swal.fire({

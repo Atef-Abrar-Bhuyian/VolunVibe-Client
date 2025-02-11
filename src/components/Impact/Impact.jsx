@@ -16,7 +16,7 @@ const Impact = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="text-2xl border-2 border-purple-400 shadow-purple-400 rounded-xl cursor-pointer flex flex-col items-center justify-center p-10 shadow-md">
           <div ref={ref} className="font-bold text-5xl">
-            <Fade>
+            <Fade triggerOnce={true}>
               {inView && (
                 <CountUp
                   start={70000}

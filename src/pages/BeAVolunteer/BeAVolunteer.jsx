@@ -48,7 +48,7 @@ const BeAVolunteer = () => {
 
     // Add to db
     axios
-      .post(`https://assignment12-server-gold.vercel.app/volunteerRequest`, newRequest)
+      .post(`http://localhost:5000/volunteerRequest`, newRequest)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

@@ -15,42 +15,49 @@ const VolunteerNeedsNow = () => {
         </h1>
       </Fade>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {volunteerPost.map((post) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {volunteerPost?.map((post) => (
           <div
             key={post._id}
-            className="card card-compact bg-base-100 h-[32rem] shadow-md border-2 border-purple-400 shadow-purple-700"
+            className="bg-white border border-gray-200 shadow-lg rounded-xl overflow-hidden transition hover:shadow-xl hover:-translate-y-1 duration-300 flex flex-col cursor-pointer"
           >
-            <figure>
-              <img
-                className="w-full h-80"
-                src={post.thumbnail}
-                alt={post.postTitle}
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{post.postTitle}</h2>
-              <p className="flex items-center gap-1">
-                <MdOutlineCategory className="text-lg" />
-                <span className="font-semibold">Category</span>: {post.category}
-              </p>
-              <p className="flex items-center gap-1">
-                <IoMdTimer className="text-lg" />
-                <span className="font-semibold">Deadline </span>:{" "}
-                {format(post.deadline,'PPP')}
-              </p>
-              <div className="card-actions justify-end">
-                <Link to={`/volunteerPost/${post._id}`}>
-                  <button className="btn">View Details</button>
-                </Link>
+            {/* Image */}
+            <img className="w-full h-44 object-cover" src={post.thumbnail} alt={post.postTitle} />
+
+            {/* Card Content */}
+            <div className="p-4 flex flex-col flex-grow">
+              <h2 className="text-lg font-semibold text-gray-900">{post.postTitle}</h2>
+
+              <div className="flex justify-between items-center mt-2 text-gray-600 text-sm">
+                <p className="flex items-center gap-1">
+                  <MdOutlineCategory className="text-lg text-purple-600" />
+                  {post.category}
+                </p>
+                <p className="flex items-center gap-1">
+                  <IoMdTimer className="text-lg text-red-500" />
+                  {format(post.deadline, "PPP")}
+                </p>
               </div>
+
+              {/* Push button to the bottom */}
+              <div className="flex-grow"></div>
+              
+              <Link to={`/volunteerPost/${post._id}`}>
+                <button className="w-full mt-4 bg-purple-900 text-white py-2 rounded-lg hover:bg-purple-950 transition">
+                  View Details
+                </button>
+              </Link>
             </div>
           </div>
         ))}
       </div>
-      <div className="mt-10 flex justify-end">
+
+      {/* See All Button */}
+      <div className="mt-10 flex justify-center">
         <Link to={"/allVolunteerPost"}>
-          <button className="btn">See All Volunteer Posts</button>
+          <button className="px-6 py-2 bg-purple-900 text-white rounded-lg hover:bg-purple-950 transition">
+            See All Volunteer Posts
+          </button>
         </Link>
       </div>
     </div>

@@ -18,7 +18,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="text-black navbar bg-white bg-opacity-70 backdrop-blur-lg z-10 md:w-11/12 md:mx-auto sticky top-4 rounded-lg">
+    <div className="z-10 sticky top-0 bg-white bg-opacity-70 backdrop-blur-lg">
+      <div className="text-black navbar md:w-11/12 md:mx-auto">
       <Tooltip id="profile-tooltip" />
       <div className="navbar-start">
         <div className="dropdown">
@@ -138,20 +139,7 @@ const Navbar = () => {
         </Fade>
       </div>
     </div>
-
-    // <li>
-    //             <details>
-    //               <summary>Parent</summary>
-    //               <ul className="bg-base-100 rounded-t-none p-2">
-    //                 <li>
-    //                   <a>Link 1</a>
-    //                 </li>
-    //                 <li>
-    //                   <a>Link 2</a>
-    //                 </li>
-    //               </ul>
-    //             </details>
-    //           </li>
+    </div>
   );
 };
 

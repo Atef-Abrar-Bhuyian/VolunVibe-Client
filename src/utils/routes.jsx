@@ -22,14 +22,14 @@ const routes = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: () =>
-          fetch("https://assignment12-server-gold.vercel.app/topNeedVolunteer"),
+          fetch("http://localhost:5000/topNeedVolunteer"),
       },
       {
         path: "/allVolunteerPost",
         element: <AllVolunteerPage></AllVolunteerPage>,
         loader: () =>
           fetch(
-            "https://assignment12-server-gold.vercel.app/totalNumberOfPosts"
+            "http://localhost:5000/totalNumberOfPosts"
           ),
       },
       {
@@ -41,7 +41,7 @@ const routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://assignment12-server-gold.vercel.app/volunteerPost/${params.id}`
+            `http://localhost:5000/volunteerPost/${params.id}`
           ),
       },
       {
@@ -53,7 +53,7 @@ const routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://assignment12-server-gold.vercel.app/volunteerPost/${params.id}`
+            `http://localhost:5000/volunteerPost/${params.id}`
           ),
       },
       {
@@ -89,7 +89,7 @@ const routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://assignment12-server-gold.vercel.app/volunteerPost/${params.id}`
+            `http://localhost:5000/volunteerPost/${params.id}`
           ),
       },
     ],
