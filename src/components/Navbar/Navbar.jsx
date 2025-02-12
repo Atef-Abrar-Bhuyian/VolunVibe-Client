@@ -15,6 +15,9 @@ const Navbar = () => {
       <li>
         <NavLink to={"/allVolunteerPost"}>Volunteer Opportunities</NavLink>
       </li>
+      <li>
+        <NavLink to={"/successStories"}>Success Stories</NavLink>
+      </li>
     </>
   );
   return (

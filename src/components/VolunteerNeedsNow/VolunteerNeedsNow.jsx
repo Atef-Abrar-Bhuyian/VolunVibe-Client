@@ -53,7 +53,7 @@ const VolunteerNeedsNow = () => {
       </div>
 
       {/* See All Button */}
-      <div className="mt-10 flex justify-center">
+      <div className="mt-10 flex justify-end">
         <Link to={"/allVolunteerPost"}>
           <button className="px-6 py-2 bg-purple-900 text-white rounded-lg hover:bg-purple-950 transition">
             See All Volunteer Posts

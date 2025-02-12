@@ -11,6 +11,7 @@ import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 import ManageMyPost from "../pages/ManageMyPost/ManageMyPost";
 import ModifyPost from "../pages/ModifyPost/ModifyPost";
 import BeAVolunteer from "../pages/BeAVolunteer/BeAVolunteer";
+import SuccessStories from "../pages/SuccessStories/SuccessStories";
 
 const routes = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const routes = createBrowserRouter([
           fetch(
             "http://localhost:5000/totalNumberOfPosts"
           ),
+      },
+      {
+        path: "/successStories",
+        element: <SuccessStories></SuccessStories>
       },
       {
         path: "/volunteerPost/:id",

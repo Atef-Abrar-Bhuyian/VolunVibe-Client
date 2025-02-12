@@ -21,10 +21,10 @@ const VolunteerCallToAction = () => {
         <hr className="border border-purple-600 w-56" />
         <div className="flex flex-col md:flex-row gap-4">
           <div>
-            <Link to={"/allVolunteerPost"}><button className="btn">BECOME A VOLUNTEER</button></Link>
+            <Link to={"/allVolunteerPost"}><button className="btn bg-purple-900 text-white py-2 hover:bg-purple-950 border-none">BECOME A VOLUNTEER</button></Link>
           </div>
           <div>
-            <Link to={"/addVolunteerPost"}><button className="btn">MAKE A VOLUNTEER NEED POST</button></Link>
+            <Link to={"/addVolunteerPost"}><button className="btn bg-purple-900 text-white py-2 hover:bg-purple-950 border-none">MAKE A VOLUNTEER NEED POST</button></Link>
           </div>
         </div>
       </Fade>
