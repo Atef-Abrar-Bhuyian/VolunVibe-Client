@@ -1,5 +1,5 @@
 import React from "react";
-import { InfinitySpin, Triangle } from "react-loader-spinner";
+import { InfinitySpin } from "react-loader-spinner";
 
 const Loading = () => {
   return (

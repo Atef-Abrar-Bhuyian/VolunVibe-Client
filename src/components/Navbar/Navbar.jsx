@@ -50,7 +50,7 @@ const Navbar = () => {
           </ul>
         </div>
         {/* Logo */}
-        <Link to={"/"} className="btn btn-ghost text-xl">
+        <Link to={"/"} className="btn btn-ghost text-xl text-purple-950">
           <MdVolunteerActivism />
           VolunVibe
         </Link>

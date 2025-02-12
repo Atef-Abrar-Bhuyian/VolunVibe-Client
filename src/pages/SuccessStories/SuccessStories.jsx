@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "animate.css";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const stories = [
     {
@@ -55,6 +56,13 @@ const stories = [
 export default function VolunteerSuccessStories() {
   return (
     <div className="p-6 w-4/5 mx-auto text-center">
+        <HelmetProvider>
+                <Helmet>
+                  <meta charSet="utf-8" />
+                  <title>VolunVibe | Success Stories</title>
+                  <link rel="canonical" href="http://mysite.com/example" />
+                </Helmet>
+              </HelmetProvider>
       <h1 className="text-3xl font-bold mb-4 animate__animated animate__fadeInDown">
         Volunteer Success Stories
       </h1>
