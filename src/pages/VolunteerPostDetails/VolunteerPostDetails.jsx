@@ -3,7 +3,6 @@ import { format } from "date-fns";
 import React, { useContext, useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
 import { BiCategory } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
 import { FaRegUser, FaUsers } from "react-icons/fa";
@@ -33,14 +32,13 @@ const VolunteerPostDetails = () => {
   }, [postDetails]);
 
   const handleApplyVolunteer = () => {
-    //
     if (user.email === postDetails.organizerEmail) {
       return toast.error("You Cannot Apply To Your Post");
     } else if (postDetails.noOfVolunteersNeeded === 0) {
       return Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Volunteer slots are fully filled.Thank you for your interest!",
+        text: "Volunteer slots are fully filled. Thank you for your interest!",
       });
     } else {
       navigate(`/beAVolunteer/${postDetails._id}`);
@@ -49,7 +47,7 @@ const VolunteerPostDetails = () => {
 
   return (
     <div className="my-14 w-11/12 mx-auto">
-      <ToastContainer></ToastContainer>
+      <ToastContainer />
       <HelmetProvider>
         <Helmet>
           <meta charSet="utf-8" />
@@ -58,82 +56,76 @@ const VolunteerPostDetails = () => {
         </Helmet>
       </HelmetProvider>
       <Fade delay={500}>
-        <div className="flex justify-between gap-10 flex-col-reverse lg:flex-row">
-          {/* Information */}
-          <div className="flex-1 mt-10">
-            {/* Post Title */}
-            <h1 className="text-4xl font-bold">{postDetails.postTitle}</h1>
-            <div className="flex gap-6 my-3 items-center juce">
+        <div className="flex flex-col lg:flex-row gap-12 bg-white shadow-lg rounded-xl p-6">
+          {/* Information Section */}
+          <div className="flex-1">
+            <h1 className="text-3xl font-semibold text-gray-800">{postDetails.postTitle}</h1>
+            <div className="flex gap-8 my-6 text-sm text-gray-600">
               {/* Category */}
-              <h3 className="text-lg p-2 rounded-3xl bg-violet-600 text-white flex items-center gap-1">
-                <BiCategory />
-                {postDetails.category}
-              </h3>
+              <div className="flex items-center gap-3 text-white bg-purple-950 rounded-lg px-4 py-2 shadow-md">
+                <BiCategory className="text-xl" />
+                <span>{postDetails.category}</span>
+              </div>
 
               {/* Location */}
-              <h3 className="text-lg p-2 rounded-3xl bg-violet-600 text-white flex items-center gap-1">
-                {" "}
-                <CiLocationOn />
-                {postDetails.location}
-              </h3>
+              <div className="flex items-center gap-3 text-white bg-purple-950 rounded-lg px-4 py-2 shadow-md">
+                <CiLocationOn className="text-xl" />
+                <span>{postDetails.location}</span>
+              </div>
             </div>
 
-            {/* description */}
-            <div className="space-y-4 mt-10">
-              <h3 className="text-lg w-11/12">
-                <span className="font-bold">Description: </span>
+            <div className="space-y-6 text-gray-600">
+              {/* Description */}
+              <h3 className="text-lg">
+                <span className="font-semibold text-gray-800">Description: </span>
                 {postDetails.description}
               </h3>
 
               {/* Volunteer Needed */}
-              <h3 className="text-lg flex items-center gap-1">
-                <span className="font-bold flex items-center gap-1">
-                  <FaUsers />
-                  Volunteer Needed:
-                </span>{" "}
-                {postDetails.noOfVolunteersNeeded}
+              <h3 className="text-lg flex items-center gap-2">
+                <FaUsers className="text-xl text-gray-800" />
+                <span className="font-semibold text-gray-800">Volunteer Needed:</span> {postDetails.noOfVolunteersNeeded}
               </h3>
 
               {/* Deadline */}
-              <h3 className="text-lg flex items-center gap-1">
-                <span className="font-bold flex items-center gap-1">
-                  <IoMdTimer />
-                  Deadline:{" "}
-                </span>
-                {format(postDetails.deadline, "PPP")}
+              <h3 className="text-lg flex items-center gap-2">
+                <IoMdTimer className="text-xl text-gray-800" />
+                <span className="font-semibold text-gray-800">Deadline:</span> {format(postDetails.deadline, "PPP")}
               </h3>
 
               {/* Organizer Name & Email */}
-              <h3 className="text-lg flex items-center gap-1">
-                <span className="font-bold flex items-center gap-1">
-                  <FaRegUser />
-                  Organizer Name:{" "}
-                </span>
-                {postDetails.organizerName}
+              <h3 className="text-lg flex items-center gap-2">
+                <FaRegUser className="text-xl text-gray-800" />
+                <span className="font-semibold text-gray-800">Organizer Name:</span> {postDetails.organizerName}
               </h3>
-              <h3 className="text-lg flex items-center gap-1">
-                <span className="font-bold flex items-center gap-1">
-                  <MdMarkEmailRead />
-                  Organizer Email:{" "}
-                </span>
-                {postDetails.organizerEmail}
+              <h3 className="text-lg flex items-center gap-2">
+                <MdMarkEmailRead className="text-xl text-gray-800" />
+                <span className="font-semibold text-gray-800">Organizer Email:</span> {postDetails.organizerEmail}
               </h3>
             </div>
 
-            {/* Be a Volunteer btn */}
-            {alreadyRequested === true ? (
-              <button className="btn mt-10" disabled>
+            {/* Be a Volunteer Button */}
+            {alreadyRequested ? (
+              <button className="w-full mt-6 py-3 text-lg text-gray-500 bg-gray-300 rounded-md cursor-not-allowed">
                 Already Requested
               </button>
             ) : (
-              <button onClick={handleApplyVolunteer} className="btn mt-10">
+              <button
+                onClick={handleApplyVolunteer}
+                className="w-full mt-6 py-3 text-lg text-white bg-purple-950 rounded-md hover:bg-purple-900 transition duration-300"
+              >
                 Be a Volunteer
               </button>
             )}
           </div>
-          {/* Thumbnail */}
+
+          {/* Thumbnail Section */}
           <div className="flex-1">
-            <img className="rounded-xl" src={postDetails.thumbnail} alt="" />
+            <img
+              className="rounded-lg w-full h-full object-cover shadow-md hover:scale-105 transition-all duration-300"
+              src={postDetails.thumbnail}
+              alt={postDetails.postTitle}
+            />
           </div>
         </div>
       </Fade>

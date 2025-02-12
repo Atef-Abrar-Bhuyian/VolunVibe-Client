@@ -10,7 +10,7 @@ const Grid = ({ volunteerPosts }) => {
       {volunteerPosts?.map((post) => (
         <div
           key={post._id}
-          className="card card-compact bg-white shadow-purple-950 shadow-md rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+          className="cursor-pointer card card-compact bg-white shadow-purple-950 shadow-md rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300"
         >
           <figure className="overflow-hidden rounded-t-lg">
             <img
