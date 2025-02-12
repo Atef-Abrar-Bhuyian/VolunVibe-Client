@@ -12,6 +12,7 @@ import ManageMyPost from "../pages/ManageMyPost/ManageMyPost";
 import ModifyPost from "../pages/ModifyPost/ModifyPost";
 import BeAVolunteer from "../pages/BeAVolunteer/BeAVolunteer";
 import SuccessStories from "../pages/SuccessStories/SuccessStories";
+import About from "../pages/About/About";
 
 const routes = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const routes = createBrowserRouter([
       {
         path: "/successStories",
         element: <SuccessStories></SuccessStories>
+      },
+      {
+        path: "/about",
+        element: <About></About>
       },
       {
         path: "/volunteerPost/:id",

@@ -34,16 +34,13 @@ const Footer = () => {
       </nav>
       <nav>
         <h6 className="footer-title">Company</h6>
-        <Link className="link link-hover">About us</Link>
-        <Link className="link link-hover">Contact</Link>
-        <Link className="link link-hover">Jobs</Link>
-        <Link className="link link-hover">Press kit</Link>
+        <Link to={"/About"} className="link link-hover">About us</Link>
+        <Link to={"/About"} className="link link-hover">Contact</Link>
       </nav>
       <nav>
         <h6 className="footer-title">Legal</h6>
         <Link className="link link-hover">Terms of use</Link>
         <Link className="link link-hover">Privacy policy</Link>
-        <Link className="link link-hover">Cookie policy</Link>
       </nav>
       <ScrollToTop
         smooth
