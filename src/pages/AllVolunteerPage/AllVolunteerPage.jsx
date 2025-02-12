@@ -11,6 +11,7 @@ import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
+import { TiArrowUnsorted } from "react-icons/ti";
 
 const AllVolunteerPage = () => {
   const { count } = useLoaderData();
@@ -50,6 +51,11 @@ const AllVolunteerPage = () => {
     }
   };
 
+  const handleSortByDate = () =>{
+    axios.get("http://localhost:5000/needVolunteerSort")
+    .then((res) => setVolunteerPosts(res.data));
+  }
+
   return (
     <div className="my-10">
       <HelmetProvider>
@@ -84,6 +90,10 @@ const AllVolunteerPage = () => {
                   />
                 </svg>
               </label>
+            </div>
+            <div>
+              <button onClick={handleSortByDate} className="btn w-full flex items-center gap-1">Sort By Date <TiArrowUnsorted />
+              </button>
             </div>
             <div className="flex gap-4">
               <button onClick={handleGrid} className="btn hover:bg-purple-500">
