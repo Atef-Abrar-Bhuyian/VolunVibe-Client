@@ -10,7 +10,7 @@ const VolunteerNeedsNow = () => {
   return (
     <div className="my-20 w-11/12 mx-auto">
       <Fade>
-        <h1 className="text-3xl md:text-5xl font-bold text-center mb-10">
+        <h1 className="text-3xl md:text-5xl font-bold text-center my-10">
           Upcoming Volunteer Deadlines
         </h1>
       </Fade>
@@ -43,7 +43,7 @@ const VolunteerNeedsNow = () => {
               <div className="flex-grow"></div>
               
               <Link to={`/volunteerPost/${post._id}`}>
-                <button className="w-full mt-4 bg-purple-900 text-white py-2 rounded-lg hover:bg-purple-950 transition">
+                <button className="w-full mt-4 bg-purple-950 text-white py-2 rounded-lg hover:bg-purple-900 transition">
                   View Details
                 </button>
               </Link>
@@ -55,7 +55,7 @@ const VolunteerNeedsNow = () => {
       {/* See All Button */}
       <div className="mt-10 flex justify-end">
         <Link to={"/allVolunteerPost"}>
-          <button className="px-6 py-2 bg-purple-900 text-white rounded-lg hover:bg-purple-950 transition">
+          <button className="px-6 py-2 bg-purple-950 text-white rounded-lg hover:bg-purple-900 transition">
             See All Volunteer Posts
           </button>
         </Link>

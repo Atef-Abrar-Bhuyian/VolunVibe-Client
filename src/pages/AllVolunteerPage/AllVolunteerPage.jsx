@@ -18,7 +18,7 @@ const AllVolunteerPage = () => {
   const [grid, setGrid] = useState(true);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  const postsPerPage = 6;
+  const postsPerPage = 8;
   const numberOfPages = Math.ceil(count / postsPerPage);
   const pages = [...Array(numberOfPages).keys()];
 
