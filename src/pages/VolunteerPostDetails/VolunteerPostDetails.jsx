@@ -20,7 +20,7 @@ const VolunteerPostDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/volunteerRequest").then((res) => {
+    axios.get("https://assignment12-server-gold.vercel.app/volunteerRequest").then((res) => {
       const checkingRequest = res.data.find(
         (post) =>
           postDetails._id === post.PostId && post.volunteerEmail === user?.email
