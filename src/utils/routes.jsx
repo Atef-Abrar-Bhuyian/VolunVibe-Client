@@ -13,6 +13,7 @@ import ModifyPost from "../pages/ModifyPost/ModifyPost";
 import BeAVolunteer from "../pages/BeAVolunteer/BeAVolunteer";
 import SuccessStories from "../pages/SuccessStories/SuccessStories";
 import About from "../pages/About/About";
+import TermsPage from "../pages/TermsPage/TermsPage";
 
 const routes = createBrowserRouter([
   {
@@ -24,14 +25,14 @@ const routes = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: () =>
-          fetch("http://localhost:5000/topNeedVolunteer"),
+          fetch("https://assignment12-server-gold.vercel.app/topNeedVolunteer"),
       },
       {
         path: "/allVolunteerPost",
         element: <AllVolunteerPage></AllVolunteerPage>,
         loader: () =>
           fetch(
-            "http://localhost:5000/totalNumberOfPosts"
+            "https://assignment12-server-gold.vercel.app/totalNumberOfPosts"
           ),
       },
       {
@@ -43,6 +44,10 @@ const routes = createBrowserRouter([
         element: <About></About>
       },
       {
+        path: "/terms",
+        element: <TermsPage></TermsPage>
+      },
+      {
         path: "/volunteerPost/:id",
         element: (
           <PrivateRoute>
@@ -51,7 +56,7 @@ const routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/volunteerPost/${params.id}`
+            `https://assignment12-server-gold.vercel.app/volunteerPost/${params.id}`
           ),
       },
       {
@@ -63,7 +68,7 @@ const routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/volunteerPost/${params.id}`
+            `https://assignment12-server-gold.vercel.app/volunteerPost/${params.id}`
           ),
       },
       {
@@ -99,7 +104,7 @@ const routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/volunteerPost/${params.id}`
+            `https://assignment12-server-gold.vercel.app/volunteerPost/${params.id}`
           ),
       },
     ],
