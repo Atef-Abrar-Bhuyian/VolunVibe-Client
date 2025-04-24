@@ -88,16 +88,16 @@ export default function VolunteerSuccessStories() {
       <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
         {stories.map((story, index) => (
           <div
-            key={index}
-            className="bg-[#2a2a3b] p-6 rounded-2xl shadow-md border border-transparent 
-                   transition-transform duration-300 ease-in-out 
-                   hover:-translate-y-3 hover:scale-105
-                   animate__animated animate__fadeInUp"
-            style={{
-              animationDelay: `${index * 0.15}s`,
-              animationFillMode: "both",
-            }}
-          >
+          key={index}
+          className="bg-[#2a2a3b] p-6 rounded-2xl shadow-md border border-transparent 
+          transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+          hover:-translate-y-2 hover:scale-[1.05]
+          animate__animated animate__fadeInUp cursor-pointer"
+          style={{
+            animationDelay: `${index * 0.15}s`,
+            animationFillMode: "both",
+          }}
+        >
             <div className="flex flex-col items-center">
               <img
                 src={story.image}
