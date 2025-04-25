@@ -4,6 +4,16 @@ VolunVibe is a platform that connects individuals with volunteer opportunities. 
 
 ---
 
+## 📸 Screenshot
+
+![VolunVibe Screenshot](public/volunvibe.png)
+
+---
+
+
+## Live Demo
+Visit the live site: [VolunVibe](https://volunvibe.web.app/)
+
 ## Features
 - **Volunteer Needs Now:** Displays a maximum of six posts with upcoming deadlines for volunteer opportunities.
 - **Search Functionality:** Quickly search for volunteer posts by title.
@@ -60,5 +70,25 @@ VolunVibe is a platform that connects individuals with volunteer opportunities. 
 
 ---
 
-### Live Demo
-Visit the live site: [VolunVibe](https://volunvibe.web.app/)
+## Setup Instructions
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Atef-Abrar-Bhuyian/VolunVibe-Client.git
+
+2. **Navigate into the project folder:**
+    cd VolunVibe-Client
+
+3. **Install dependencies:**
+    npm install
+
+4. **Start the development server:**
+    npm run dev
+
+---
+
+## Default Credentials
+
+    Email: user@gmail.com
+    Password: User123#
+
