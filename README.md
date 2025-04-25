@@ -4,7 +4,7 @@ VolunVibe is a platform that connects individuals with volunteer opportunities. 
 
 ---
 
-## 📸 Screenshot
+## Screenshot
 
 ![VolunVibe Screenshot](public/volunvibe.png)
 
