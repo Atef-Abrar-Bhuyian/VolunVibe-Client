@@ -19,9 +19,7 @@ const ManageMyPost = () => {
   const [requestPosts, setRequestPosts] = useState([]);
 
   useEffect(() => {
-    axiosSecure
-      .get(`/post/${user?.email}`)
-      .then((res) => setPosts(res.data));
+    axiosSecure.get(`/post/${user?.email}`).then((res) => setPosts(res.data));
   }, [user]);
 
   useEffect(() => {
@@ -92,53 +90,49 @@ const ManageMyPost = () => {
 
       {/* my volunteer need posts */}
       <div>
-        <div>
-          {/* Heading */}
-          <Slide>
-            <h1 className="text-3xl text-center mb-6 font-bold">
-              My Volunteer Need Posts
-            </h1>
-          </Slide>
-        </div>
-        {/* Table */}
+        <Slide>
+          <h1 className="text-3xl text-center mb-6 font-bold">
+            My Volunteer Need Posts
+          </h1>
+        </Slide>
+
         {posts.length > 0 ? (
-          <Fade delay={500}>
-            {/* Table */}
-            <div className="overflow-x-auto rounded-2xl border border-purple-600">
-              <table className="table">
-                {/* head */}
-                <thead>
-                  <tr className="border border-purple-600">
-                    <th>Post Title</th>
-                    <th className="hidden md:block">Category</th>
-                    <th>Deadline</th>
-                    <th>Edit / Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* row 1 */}
-                  {posts.map((post) => (
-                    <tr key={post._id} className="border border-purple-600">
-                      <td>{post.postTitle}</td>
-                      <td className="hidden md:block">{post.category}</td>
-                      <td>{format(post.deadline, "PPP")}</td>
-                      <td className="flex justify-start gap-2">
+          <Fade delay={500} triggerOnce={true}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {posts.map((post) => (
+                <div
+                  key={post._id}
+                  className="card shadow-lg border border-purple-600 rounded-lg hover:shadow-xl transition duration-300"
+                >
+                  <img
+                    src={post.thumbnail}
+                    alt={post.postTitle}
+                    className="rounded-t-lg w-full h-48 object-cover"
+                  />
+                  <div className="card-body p-4">
+                    <h2 className="text-lg font-semibold">{post.postTitle}</h2>
+                    <p className="text-sm text-gray-600">{post.description}</p>
+                    <div className="flex justify-between items-center mt-4">
+                      <p className="text-xs text-gray-400">
+                        {format(post.deadline, "PPP")}
+                      </p>
+                      <div className="flex gap-2">
                         <Link to={`/modifyPost/${post._id}`}>
-                          <button className="btn">
+                          <button className="btn text-indigo-600 hover:text-indigo-800">
                             <FaRegEdit />
                           </button>
                         </Link>
                         <button
                           onClick={() => handleDelete(post._id)}
-                          className="btn"
+                          className="btn text-red-600 hover:text-red-800"
                         >
                           <MdDeleteOutline />
                         </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </Fade>
         ) : (
@@ -149,53 +143,49 @@ const ManageMyPost = () => {
         )}
       </div>
 
-      {/* My Volunteer Requests  */}
-
+      {/* My Volunteer Requests */}
       <div>
-        <div>
-          {/* Heading */}
-          <Slide>
-            <h1 className="text-3xl text-center mb-6 font-bold mt-10">
-              My Volunteer Requests
-            </h1>
-          </Slide>
-        </div>
-        {/* Table */}
+        <Slide>
+          <h1 className="text-3xl text-center mb-6 font-bold mt-10">
+            My Volunteer Requests
+          </h1>
+        </Slide>
+
         {requestPosts.length > 0 ? (
-          <Fade delay={500}>
-            {/* Table */}
-            <div className="overflow-x-auto rounded-2xl border border-purple-600">
-              <table className="table">
-                {/* head */}
-                <thead>
-                  <tr className="border border-purple-600">
-                    <th>Post Title</th>
-                    <th className="hidden md:block">Status</th>
-                    <th>Category</th>
-                    <th>Deadline</th>
-                    <th>Cancel</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* row 1 */}
-                  {requestPosts.map((post) => (
-                    <tr key={post._id} className="border border-purple-600">
-                      <td>{post.postTitle}</td>
-                      <td>{post.status}</td>
-                      <td className="hidden md:block">{post.category}</td>
-                      <td>{format(post.deadline, "PPP")}</td>
-                      <td className="flex justify-start">
+          <Fade delay={500} triggerOnce={true}>
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {requestPosts.map((post) => (
+                <div
+                  key={post._id}
+                  className="card shadow-lg border border-purple-600 rounded-lg hover:shadow-xl transition duration-300"
+                >
+                  <img
+                    src={post.thumbnail}
+                    alt={post.postTitle}
+                    className="rounded-t-lg w-full h-48 object-cover"
+                  />
+                  <div className="card-body p-4">
+                    <h2 className="text-lg font-semibold">{post.postTitle}</h2>
+                    <p className="text-xs text-gray-500">
+                      Status: {post.status}
+                    </p>
+                    <p className="text-sm text-gray-600">{post.category}</p>
+                    <div className="flex justify-between items-center mt-4">
+                      <p className="text-xs text-gray-400">
+                        {format(post.deadline, "PPP")}
+                      </p>
+                      <div className="flex gap-2">
                         <button
                           onClick={() => handleRequesDelete(post._id)}
-                          className="btn"
+                          className="btn text-red-600 hover:text-red-800"
                         >
                           <MdCancel />
                         </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </Fade>
         ) : (
