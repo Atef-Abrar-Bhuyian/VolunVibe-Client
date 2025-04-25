@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import "animate.css";
 
 const TermsPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0f0f1a] text-white px-6 py-12 font-sans">
       <HelmetProvider>

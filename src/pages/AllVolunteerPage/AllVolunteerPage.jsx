@@ -32,7 +32,8 @@ const AllVolunteerPage = () => {
 
   const handleGrid = () => setGrid(true);
   const handleTable = () => setGrid(false);
-  const handlePrevPage = () => currentPage > 0 && setCurrentPage(currentPage - 1);
+  const handlePrevPage = () =>
+    currentPage > 0 && setCurrentPage(currentPage - 1);
   const handleNextPage = () =>
     currentPage < pages.length - 1 && setCurrentPage(currentPage + 1);
 
@@ -43,100 +44,103 @@ const AllVolunteerPage = () => {
   };
 
   return (
-    <div className="my-12 px-4">
-      <HelmetProvider>
-        <Helmet>
-          <title>VolunVibe | Volunteer Posts</title>
-        </Helmet>
-      </HelmetProvider>
+    <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
+  <HelmetProvider>
+    <Helmet>
+      <title>VolunVibe | Volunteer Posts</title>
+    </Helmet>
+  </HelmetProvider>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <aside className="lg:col-span-3 space-y-6">
-          <div className="text-xl font-semibold text-purple-600">Filters</div>
+  {/* Top Controls */}
+  <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+    {/* Search Bar */}
+    <div className="w-full max-w-md relative">
+      <input
+        type="text"
+        onChange={(e) => setSearch(e.target.value)}
+        className="w-full px-5 py-3 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+        placeholder="Search volunteer opportunities..."
+      />
+      <CiSearch className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-400 text-2xl" />
+    </div>
 
-          <div>
-            <label className="relative block">
-              <input
-                type="text"
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="Search volunteers..."
-              />
-              <CiSearch className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-500 text-xl" />
-            </label>
-          </div>
+    {/* Sort + View Mode */}
+    <div className="flex flex-wrap items-center gap-4">
+      <button
+        onClick={handleSortByDate}
+        className="flex items-center gap-2 px-4 py-2 bg-purple-100 hover:bg-purple-200 text-purple-600 font-medium rounded-full shadow-sm transition"
+      >
+        Sort By Date <TiArrowUnsorted />
+      </button>
 
-          <div>
-            <button
-              onClick={handleSortByDate}
-              className="w-full flex justify-center items-center gap-2 py-2 rounded-xl bg-purple-100 hover:bg-purple-200 text-purple-700 font-medium transition"
-            >
-              Sort By Date <TiArrowUnsorted className="text-lg" />
-            </button>
-          </div>
-
-          <div className="flex gap-3 justify-center">
-            <button
-              onClick={handleGrid}
-              className={`px-4 py-2 rounded-xl flex items-center gap-2 font-medium transition ${
-                grid
-                  ? "bg-purple-600 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-            >
-              Grid <IoGrid />
-            </button>
-            <button
-              onClick={handleTable}
-              className={`px-4 py-2 rounded-xl flex items-center gap-2 font-medium transition ${
-                !grid
-                  ? "bg-purple-600 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-            >
-              Table <CiViewTable />
-            </button>
-          </div>
-        </aside>
-
-        <main className="lg:col-span-9 space-y-6">
-          {grid ? (
-            <Grid volunteerPosts={volunteerPosts} />
-          ) : (
-            <Table volunteerPosts={volunteerPosts} />
-          )}
-
-          {/* Pagination */}
-          <div className="flex justify-center items-center gap-2 mt-4">
-            <button
-              onClick={handlePrevPage}
-              className="text-purple-600 hover:text-purple-800 transition text-2xl"
-            >
-              <IoIosArrowDropleftCircle />
-            </button>
-            {pages.map((page) => (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`px-4 py-1 rounded-full font-semibold transition ${
-                  currentPage === page
-                    ? "bg-purple-600 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-              >
-                {page + 1}
-              </button>
-            ))}
-            <button
-              onClick={handleNextPage}
-              className="text-purple-600 hover:text-purple-800 transition text-2xl"
-            >
-              <IoIosArrowDroprightCircle />
-            </button>
-          </div>
-        </main>
+      <div className="flex items-center gap-2 border border-gray-300 rounded-full p-1 bg-white shadow-sm">
+        <button
+          onClick={handleGrid}
+          className={`px-4 py-2 rounded-full transition font-medium ${
+            grid
+              ? "bg-purple-600 text-white"
+              : "text-gray-600 hover:bg-gray-100"
+          }`}
+        >
+          <IoGrid className="inline mr-1" />
+          Grid
+        </button>
+        <button
+          onClick={handleTable}
+          className={`px-4 py-2 rounded-full transition font-medium ${
+            !grid
+              ? "bg-purple-600 text-white"
+              : "text-gray-600 hover:bg-gray-100"
+          }`}
+        >
+          <CiViewTable className="inline mr-1" />
+          Table
+        </button>
       </div>
     </div>
+  </div>
+
+  {/* Volunteer Posts Display */}
+  <div>
+    {grid ? (
+      <Grid volunteerPosts={volunteerPosts} />
+    ) : (
+      <Table volunteerPosts={volunteerPosts} />
+    )}
+  </div>
+
+  {/* Pagination */}
+  {pages.length > 1 && (
+    <div className="flex justify-center items-center gap-2 mt-10">
+      <button
+        onClick={handlePrevPage}
+        className="text-purple-500 hover:text-purple-700 transition text-2xl"
+      >
+        <IoIosArrowDropleftCircle />
+      </button>
+      {pages.map((page) => (
+        <button
+          key={page}
+          onClick={() => setCurrentPage(page)}
+          className={`px-4 py-2 rounded-full font-semibold text-sm transition ${
+            currentPage === page
+              ? "bg-purple-600 text-white"
+              : "bg-gray-100 text-gray-700 hover:bg-purple-100"
+          }`}
+        >
+          {page + 1}
+        </button>
+      ))}
+      <button
+        onClick={handleNextPage}
+        className="text-purple-500 hover:text-purple-700 transition text-2xl"
+      >
+        <IoIosArrowDroprightCircle />
+      </button>
+    </div>
+  )}
+</div>
+
   );
 };
 

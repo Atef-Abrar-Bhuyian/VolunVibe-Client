@@ -13,7 +13,7 @@ const HeroSlider = () => {
   return (
     <div className="cursor-pointer w-11/12 mx-auto">
       <Fade>
-        <h1 className="text-3xl md:text-5xl font-bold text-center my-10">
+        <h1 className="text-3xl md:text-5xl font-bold text-center my-10 ">
           Change Begins Now
         </h1>
       </Fade>

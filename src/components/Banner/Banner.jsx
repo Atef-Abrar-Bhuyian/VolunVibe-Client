@@ -17,7 +17,7 @@ const Banner = () => {
     >
       <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
         <Fade delay={500}>
-          <h1 className="text-4xl md:text-6xl font-bold">
+          <h1 className="text-4xl md:text-6xl font-bold ">
             Ready to Make an Impact?
           </h1>
           <h4 className="text-2xl md:text-4xl font-bold animate__animated animate__flash animate__delay-2s">

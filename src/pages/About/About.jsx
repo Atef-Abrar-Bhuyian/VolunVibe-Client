@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#11111d] text-white px-4 md:px-8 py-16">
       <HelmetProvider>
@@ -12,7 +16,7 @@ const About = () => {
         </Helmet>
       </HelmetProvider>
 
-      <div className="max-w-6xl mx-auto space-y-20">
+      <div className="max-w-6xl mx-auto space-y-20 animate__animated animate__fadeIn animate__slow">
         {/* Title */}
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 drop-shadow-lg">
