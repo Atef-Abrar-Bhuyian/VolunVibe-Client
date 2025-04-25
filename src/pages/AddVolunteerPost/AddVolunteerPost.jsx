@@ -66,17 +66,16 @@ const AddVolunteerPost = () => {
         <Helmet>
           <meta charSet="utf-8" />
           <title>VolunVibe | Add Posts</title>
-          <link rel="canonical" href="http://mysite.com/example" />
         </Helmet>
       </HelmetProvider>
-      <ToastContainer></ToastContainer>
+      <ToastContainer />
 
       {/* Add Review Form */}
       <div className="flex items-center justify-center">
-        <div className="card bg-base-100 md:w-1/2 w-4/5 shadow-purple-600 shadow-md my-10">
-          <form onSubmit={handleAddPost} className="card-body">
-            <div className="md:flex justify-between gap-20">
-              <div className="form-control w-full">
+        <div className="card bg-base-100 md:w-1/2 w-4/5 shadow-lg p-6">
+          <form onSubmit={handleAddPost} className="space-y-6">
+            <div className="flex gap-6">
+              <div className="form-control flex-1">
                 <label className="label">
                   <span className="label-text">Organizer Email</span>
                 </label>
@@ -89,7 +88,7 @@ const AddVolunteerPost = () => {
                 />
               </div>
 
-              <div className="form-control w-full">
+              <div className="form-control flex-1">
                 <label className="label">
                   <span className="label-text">Organizer Name</span>
                 </label>
@@ -103,8 +102,8 @@ const AddVolunteerPost = () => {
               </div>
             </div>
 
-            <div className="md:flex justify-between gap-20">
-              <div className="form-control w-full">
+            <div className="flex gap-6">
+              <div className="form-control flex-1">
                 <label className="label">
                   <span className="label-text">Thumbnail</span>
                 </label>
@@ -116,7 +115,8 @@ const AddVolunteerPost = () => {
                   required
                 />
               </div>
-              <div className="form-control w-full">
+
+              <div className="form-control flex-1">
                 <label className="label">
                   <span className="label-text">Post Title</span>
                 </label>
@@ -143,10 +143,10 @@ const AddVolunteerPost = () => {
               />
             </div>
 
-            <div className="md:flex justify-between gap-20">
-              <div className="form-control w-full">
+            <div className="flex gap-6">
+              <div className="form-control flex-1">
                 <label className="label">
-                  <span className="label-text">No. of Volunteers needed</span>
+                  <span className="label-text">No. of Volunteers Needed</span>
                 </label>
                 <input
                   type="number"
@@ -157,19 +157,19 @@ const AddVolunteerPost = () => {
                 />
               </div>
 
-              <div className="form-control w-full">
+              <div className="form-control flex-1">
                 <label className="label">
                   <span className="label-text">Deadline</span>
                 </label>
                 <DatePicker
-                  showIcon
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
+                  className="input input-bordered"
                 />
               </div>
             </div>
 
-            <div className="md:flex justify-between gap-20">
+            <div className="flex gap-6">
               <div className="form-control flex-1">
                 <label className="label">
                   <span className="label-text">Category</span>
@@ -198,7 +198,7 @@ const AddVolunteerPost = () => {
             </div>
 
             <div className="form-control mt-6">
-              <button className="btn bg-gradient-to-r from-indigo-800 to-purple-800 shadow-purple-700 shadow-md text-white border-purple-500 hover:border-white">
+              <button className="btn bg-gradient-to-r from-indigo-800 to-purple-800 shadow-md text-white hover:border-white">
                 Add Post
               </button>
             </div>
