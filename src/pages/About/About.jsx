@@ -1,110 +1,100 @@
 import React from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import "animate.css";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-[#1a1a2e] text-white px-8 py-12">
+    <div className="min-h-screen bg-[#11111d] text-white px-4 md:px-8 py-16">
       <HelmetProvider>
         <Helmet>
           <meta charSet="utf-8" />
           <title>VolunVibe | About Us</title>
-          <link rel="canonical" href="http://mysite.com/example" />
+          <link rel="canonical" href="http://mysite.com/about" />
         </Helmet>
       </HelmetProvider>
 
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="animate__animated animate__fadeIn animate__delay-1s">
-            <h1 className="text-4xl font-semibold text-purple-500 mb-6">
-              About Us
-            </h1>
-            <p className="text-lg text-gray-300 mb-6">
+      <div className="max-w-6xl mx-auto space-y-20">
+        {/* Title */}
+        <div className="text-center">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 drop-shadow-lg">
+            About VolunVibe
+          </h1>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Empowering communities by connecting people with purposeful
+            volunteering.
+          </p>
+        </div>
+
+        {/* About Text Section */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          <div className="space-y-6 text-gray-300 leading-relaxed">
+            <p>
               Welcome to{" "}
-              <span className="text-purple-400 font-semibold">VolunVibe</span>! We
-              are a platform dedicated to connecting volunteers with meaningful
-              opportunities to make a difference.
+              <span className="text-purple-400 font-medium">VolunVibe</span> —
+              your space to discover meaningful volunteer work that creates real
+              impact.
             </p>
-            <p className="text-gray-300 mb-6">
-              Our mission is to empower communities by bridging the gap between
-              volunteers and organizations in need. Whether you're looking to
-              contribute your skills, gain experience, or simply give back, we have
-              a place for you.
+            <p>
+              We’re building bridges between individuals who want to help and
+              the causes that need them most. From local initiatives to global
+              movements, we believe every contribution counts.
             </p>
-            <p className="text-gray-300">
-              Join us in creating a positive impact, one volunteer at a time.
-              Let's build a better future together!
+            <p>
+              Whether you're here to give back, grow personally, or support
+              change, there's a place for you at VolunVibe.
+            </p>
+            <p className="text-purple-300 font-semibold">
+              Let's build a better future together — one volunteer at a time.
             </p>
           </div>
 
-          <div className="animate__animated animate__fadeIn animate__delay-2s">
-            <div className="bg-purple-600 p-8 rounded-lg shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
-              <h2 className="text-2xl font-semibold text-gray-100 mb-4">Our Vision</h2>
-              <p className="text-gray-200">
-                VolunVibe strives to make volunteering accessible and impactful, ensuring that
-                people can easily contribute to their communities and make a difference in the world.
+          {/* Vision Box */}
+          <div className="bg-[#1a1a2e] border border-purple-700 rounded-xl p-8">
+            <h2 className="text-2xl font-semibold text-purple-300 mb-4">
+              Our Vision
+            </h2>
+            <p className="text-gray-300">
+              To make volunteering more accessible, impactful, and
+              community-driven — allowing everyone to contribute meaningfully to
+              the world around them.
+            </p>
+          </div>
+        </section>
+
+        {/* Why VolunVibe Section */}
+        <section className="max-w-5xl mx-auto">
+          <h2 className="text-3xl text-center mb-10 md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 drop-shadow-lg">
+            Why VolunVibe?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-[#1a1a2e] p-6 rounded-xl border border-purple-700 hover:shadow-lg transition">
+              <h3 className="text-xl font-semibold text-purple-300 mb-2">
+                Easy to Use
+              </h3>
+              <p className="text-gray-400 text-sm">
+                A simple, intuitive platform designed to help you find the right
+                opportunity fast.
+              </p>
+            </div>
+            <div className="bg-[#1a1a2e] p-6 rounded-xl border border-purple-700 hover:shadow-lg transition">
+              <h3 className="text-xl font-semibold text-purple-300 mb-2">
+                Real Impact
+              </h3>
+              <p className="text-gray-400 text-sm">
+                Every post is vetted to ensure you’re making a meaningful
+                contribution to real causes.
+              </p>
+            </div>
+            <div className="bg-[#1a1a2e] p-6 rounded-xl border border-purple-700 hover:shadow-lg transition">
+              <h3 className="text-xl font-semibold text-purple-300 mb-2">
+                Made for New Generation
+              </h3>
+              <p className="text-gray-400 text-sm">
+                Crafted with modern aesthetics and real-time speed — smooth,
+                snappy, and totally in sync with your lifestyle.
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Contact Section */}
-        <div className="mt-16 text-center animate__animated animate__fadeIn animate__delay-3s">
-          <h2 className="text-3xl font-semibold text-purple-500 mb-6">Contact Us</h2>
-          <p className="text-lg text-gray-300 mb-6">
-            We would love to hear from you! If you have any questions or suggestions, feel free to reach out.
-          </p>
-          <form className="max-w-xl mx-auto bg-purple-900 p-8 rounded-lg shadow-lg">
-            <div className="mb-4">
-              <label
-                htmlFor="name"
-                className="block text-gray-100 font-semibold mb-2"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Your Name"
-                className="w-full p-3 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="email"
-                className="block text-gray-100 font-semibold mb-2"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Your Email"
-                className="w-full p-3 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="message"
-                className="block text-gray-100 font-semibold mb-2"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                placeholder="Your Message"
-                rows="4"
-                className="w-full p-3 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-full py-3 bg-purple-950 text-white font-semibold rounded-lg hover:border hover:border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-400"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
+        </section>
       </div>
     </div>
   );

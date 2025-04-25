@@ -64,8 +64,12 @@ const TermsPage = () => {
           },
         ].map((section, idx) => (
           <section key={idx} className="mb-10">
-            <h2 className="text-2xl font-semibold text-purple-400 mb-3">{section.title}</h2>
-            <p className="text-base leading-relaxed text-gray-300">{section.text}</p>
+            <h2 className="text-2xl font-semibold text-purple-400 mb-3">
+              {section.title}
+            </h2>
+            <p className="text-base leading-relaxed text-gray-300">
+              {section.text}
+            </p>
             <div className="w-20 h-1 mt-5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
           </section>
         ))}
